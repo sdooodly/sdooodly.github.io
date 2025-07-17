@@ -1,6 +1,5 @@
 export const skills = {
-  'Frontend': ['React', 'Next.js', 'Tailwind CSS', 'JavaScript (ES6+)'],
-  'Backend': ['Node.js', 'Python', 'Django', 'Flask'],
-  'Databases': ['MongoDB', 'PostgreSQL', 'MySQL', 'Firebase Firestore'],
-  'Tools & DevOps': ['Git', 'Docker', 'AWS (S3, EC2)', 'Netlify', 'Vercel'],
-}; 
+  'Frontend': ['React', 'JavaScript', 'TypeScript', 'HTML/CSS', 'SPFx', 'Tailwind CSS', 'Knockout.js'],
+  'Backend & Cloud': ['C#', '.NET Core', 'Python', 'Node.js', 'Azure Functions', 'Azure (General Services)', 'Azure Synapse Analytics'],
+  'DevOps & Tools': ['Azure DevOps', 'Git', 'JIRA API', 'RESTful APIs', 'Jest', 'Cypress', 'PowerShell']
+};
