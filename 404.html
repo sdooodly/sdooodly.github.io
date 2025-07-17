@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Uncharted Territory | 404</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(120deg, #0A0A0A 60%, #00E0FF 100%);
+        color: #F8F8FF;
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .blueprint {
+        position: relative;
+        width: 340px;
+        height: 220px;
+        background: #181F2B;
+        border: 2px dashed #00E0FF;
+        border-radius: 18px;
+        box-shadow: 0 8px 32px #00E0FF33;
+        margin-bottom: 2rem;
+        overflow: hidden;
+        animation: unfurl 1.2s cubic-bezier(.33,1.5,.68,1) 0.2s both;
+      }
+      @keyframes unfurl {
+        0% { transform: scaleY(0.1); opacity: 0; }
+        60% { opacity: 1; }
+        100% { transform: scaleY(1); opacity: 1; }
+      }
+      .figures {
+        position: absolute;
+        bottom: 18px;
+        left: 30px;
+        display: flex;
+        gap: 32px;
+      }
+      .figure {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #B6FF2D;
+        border: 2px solid #00E0FF;
+        position: relative;
+        animation: scurry 2.5s infinite alternate ease-in-out;
+      }
+      .figure:nth-child(2) {
+        background: #FF2D95;
+        left: 18px;
+        animation-delay: 0.7s;
+      }
+      @keyframes scurry {
+        0% { left: 0; }
+        100% { left: 18px; }
+      }
+      .wrench {
+        position: absolute;
+        right: 24px;
+        bottom: 32px;
+        width: 36px;
+        height: 36px;
+        animation: roll 2.2s infinite alternate cubic-bezier(.33,1.5,.68,1);
+      }
+      @keyframes roll {
+        0% { transform: rotate(-20deg) translateX(0); }
+        100% { transform: rotate(40deg) translateX(-40px); }
+      }
+      .code-symbol {
+        position: absolute;
+        right: 24px;
+        bottom: 32px;
+        font-size: 2.2rem;
+        color: #00E0FF;
+        opacity: 0;
+        animation: morph 2.2s infinite alternate cubic-bezier(.33,1.5,.68,1);
+      }
+      @keyframes morph {
+        0%, 80% { opacity: 0; }
+        90% { opacity: 1; }
+        100% { opacity: 1; }
+      }
+      .headline {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 1.2rem;
+        text-align: center;
+        color: #00E0FF;
+        text-shadow: 0 2px 16px #00E0FF55;
+      }
+      .body {
+        font-size: 1.2rem;
+        max-width: 480px;
+        margin-bottom: 2.2rem;
+        text-align: center;
+        color: #F8F8FF;
+      }
+      .links {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+      }
+      .links a {
+        color: #FF2D95;
+        background: #00E0FF22;
+        padding: 0.7em 1.5em;
+        border-radius: 999px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background 0.2s, color 0.2s;
+      }
+      .links a:hover {
+        background: #FF2D95;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="blueprint">
+      <div class="figures">
+        <div class="figure"></div>
+        <div class="figure"></div>
+      </div>
+      <svg class="wrench" viewBox="0 0 32 32" fill="none">
+        <path d="M28.7 25.3l-7.1-7.1c1.2-2.2.8-5-1.1-6.9-2-2-5.1-2-7.1 0-2 2-2 5.1 0 7.1 1.9 1.9 4.7 2.3 6.9 1.1l7.1 7.1c.4.4 1 .4 1.4 0l.9-.9c.4-.4.4-1 0-1.4zM12.5 17.5c-1.4-1.4-1.4-3.6 0-5 1.4-1.4 3.6-1.4 5 0 1.4 1.4 1.4 3.6 0 5-1.4 1.4-3.6 1.4-5 0z" fill="#FF2D95"/>
+      </svg>
+      <span class="code-symbol">{'<>'}</span>
+    </div>
+    <div class="headline">Woah there, looks like you've wandered into some uncharted territory!!!</div>
+    <div class="body">
+      This page is still under development, much like an ambitious infrastructure project.<br/>
+    </div>
+    <div class="links">
+      <a href="/">Home</a>
+      <a href="/">Projects</a>
+    </div>
+  </body>
+</html> 
