@@ -5,6 +5,7 @@ import ProjectsSection from './components/ProjectsSection';
 import SkillsSection from './components/SkillsSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import RoadmapSection from './components/RoadmapSection';
 import { socialLinks } from './data/socialLinks';
 import { skills } from './data/skills';
 import { projects } from './data/projects';
@@ -31,6 +32,7 @@ const App = () => {
         <HeroSection />
         <ProjectsSection />
         <SkillsSection />
+        <RoadmapSection />
         <ContactSection />
       </div>
       <Footer />
