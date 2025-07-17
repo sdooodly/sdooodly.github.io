@@ -1,0 +1,9 @@
+/* src/index.css */
+/* Add any global styles here, or leave empty if Tailwind handles everything */
+
+/* Example: Basic reset or body styling not covered by Tailwind */
+body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
