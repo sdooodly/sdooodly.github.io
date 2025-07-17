@@ -1,34 +1,8 @@
 import React from 'react';
-
-const projects = [
-  {
-    title: 'Project Alpha',
-    description: 'A cutting-edge web application for managing complex data flows with real-time updates. Built with React, Node.js, and MongoDB.',
-    techStack: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
-    githubLink: 'https://github.com/your-username/project-alpha',
-    liveLink: 'https://project-alpha.vercel.app',
-    image: 'https://placehold.co/600x400/222/fff?text=Project+Alpha',
-  },
-  {
-    title: 'Project Beta',
-    description: 'An AI-powered content generation tool designed to streamline marketing efforts. Features include natural language processing and custom template creation.',
-    techStack: ['Python', 'Django', 'TensorFlow', 'PostgreSQL'],
-    githubLink: 'https://github.com/your-username/project-beta',
-    liveLink: 'https://project-beta.netlify.app',
-    image: 'https://placehold.co/600x400/222/fff?text=Project+Beta',
-  },
-  {
-    title: 'Project Gamma',
-    description: 'A mobile-first e-commerce platform with a seamless user experience and robust payment integration. Optimized for performance and scalability.',
-    techStack: ['Next.js', 'Tailwind CSS', 'Stripe API', 'Firebase'],
-    githubLink: 'https://github.com/your-username/project-gamma',
-    liveLink: 'https://project-gamma.vercel.app',
-    image: 'https://placehold.co/600x400/222/fff?text=Project+Gamma',
-  },
-];
+import { projects } from '../data/projects';
 
 const ProjectsSection = () => (
-  <section id="projects" className="py-16 md:py-24 relative overflow-visible">
+  <section id="projects" className="py-16 md:py-24 relative overflow-visible mt-20">
     <div className="relative z-10 bg-glass/80 backdrop-blur-glass border border-accent2 shadow-lg rounded-3xl p-10 md:p-20">
       <h2 className="text-4xl font-bold text-center mb-12 text-text">My Projects</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

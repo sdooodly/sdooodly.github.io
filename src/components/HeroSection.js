@@ -6,7 +6,7 @@ const socialLinks = [
 ];
 
 const HeroSection = () => (
-  <section id="about" className="container mx-auto px-4 py-20 text-center md:py-32 relative overflow-visible">
+  <section id="about" className="container mx-auto px-4 py-20 text-center md:py-32 relative overflow-visible mt-20">
     <div className="relative z-10 bg-glass/80 backdrop-blur-glass border border-accent2 shadow-lg rounded-3xl p-10 md:p-20 flex flex-col md:flex-row items-center justify-center gap-8">
       <div className="w-32 h-32 md:w-48 md:h-48 bg-accent2 rounded-full overflow-hidden shadow-xl border-4 border-accent">
         <img

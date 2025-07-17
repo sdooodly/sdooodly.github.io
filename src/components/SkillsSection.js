@@ -1,14 +1,8 @@
 import React from 'react';
-
-const skills = {
-  'Frontend': ['React', 'Next.js', 'Tailwind CSS', 'JavaScript (ES6+)'],
-  'Backend': ['Node.js', 'Express.js', 'Python', 'Django', 'Flask'],
-  'Databases': ['MongoDB', 'PostgreSQL', 'MySQL', 'Firebase Firestore'],
-  'Tools & DevOps': ['Git', 'Docker', 'AWS (S3, EC2)', 'Netlify', 'Vercel'],
-};
+import { skills } from '../data/skills';
 
 const SkillsSection = () => (
-  <section id="skills" className="py-16 md:py-24 relative overflow-visible">
+  <section id="skills" className="py-16 md:py-24 relative overflow-visible mt-20">
     <div className="relative z-10 bg-glass/80 backdrop-blur-glass border border-accent2 shadow-lg rounded-3xl p-10 md:p-20">
       <h2 className="text-4xl font-bold text-center mb-12 text-text">My Skills</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">

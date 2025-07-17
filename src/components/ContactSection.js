@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ContactSection = () => (
-  <section id="contact" className="py-16 md:py-24 relative overflow-visible">
+  <section id="contact" className="py-16 md:py-24 relative overflow-visible mt-20">
     <div className="relative z-10 bg-glass/80 backdrop-blur-glass border border-accent2 shadow-lg rounded-3xl p-10 md:p-20 text-center">
       <h2 className="text-4xl font-bold mb-8 text-text">Get In Touch</h2>
       <p className="text-lg text-text mb-8 max-w-2xl mx-auto">
