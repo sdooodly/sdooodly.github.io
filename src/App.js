@@ -56,7 +56,7 @@ const App = () => {
       <div
         className="fixed inset-0 w-full h-full -z-10 pointer-events-none"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1698748579277-2e49816e4916?auto=format&fit=crop&w=1500&q=80')`,
+          backgroundImage: `url('/assets/flower.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
