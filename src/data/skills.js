@@ -14,14 +14,14 @@ export const skills = {
     { name: 'Python', level: 9 },
     { name: 'Node.js', level: 8 },
     { name: 'Azure Functions', level: 8 },
-    { name: 'Azure (General Services)', level: 6 },
-    { name: 'Azure Synapse Analytics', level: 6 }
+    { name: 'Azure', level: 6 },
+    { name: 'Azure Synapse', level: 6 }
   ],
   'DevOps': [
     { name: 'Azure DevOps', level: 8 },
     { name: 'GitHub Actions', level: 9 },
     { name: 'YAML', level: 7 },
-    { name: 'PowerShell scripts', level: 8 }
+    { name: 'PowerShell', level: 8 }
   ],
   'Tools': [
     { name: 'Git', level: 9 },
