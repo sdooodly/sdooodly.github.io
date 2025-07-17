@@ -23,7 +23,7 @@ export const skills = {
     { name: 'YAML', level: 7 },
     { name: 'PowerShell scripts', level: 8 }
   ],
-  'Other Tools': [
+  'Tools': [
     { name: 'Git', level: 9 },
     { name: 'JIRA API', level: 6 },
     { name: 'RESTful APIs', level: 8 },

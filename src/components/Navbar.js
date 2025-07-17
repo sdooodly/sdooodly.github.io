@@ -8,19 +8,21 @@ const MoonIcon = () => (
 );
 
 const Navbar = () => (
-  <nav className="py-1 px-3 shadow-neon fixed top-0 w-full z-50 border-b border-accent2 bg-black/40">
+  <nav className="py-0.5 px-3 shadow-neon fixed top-0 w-full z-50 border-b border-accent2 bg-black/40">
     <div className="container mx-auto flex justify-between items-center flex-wrap">
-      <a href="#home" className="font-bold bg-gradient-to-r from-accent to-accent2 text-transparent bg-clip-text rounded-lg p-2 hover:text-accent2 transition-colors drop-shadow-[0_2px_16px_#00E0FF] text-lg md:text-2xl md:block hidden">
+      <a href="#home" className="font-bold bg-gradient-to-r from-accent to-accent2 text-transparent bg-clip-text rounded-lg p-1 hover:text-accent2 transition-colors drop-shadow-[0_2px_16px_#00E0FF] text-lg md:text-2xl md:block hidden">
         Sdooodly
       </a>
-      <a href="#home" className="font-bold bg-gradient-to-r from-accent to-accent2 text-transparent bg-clip-text rounded-lg p-2 hover:text-accent2 transition-colors drop-shadow-[0_2px_16px_#00E0FF] text-base md:hidden block">
-        S
+      <a href="#home" className="font-bold bg-gradient-to-r from-accent to-accent2 text-transparent bg-clip-text rounded-lg p-1 hover:text-accent2 transition-colors drop-shadow-[0_2px_16px_#00E0FF] text-base md:hidden block">
+        Sdooodly
       </a>
       <div className="flex flex-nowrap space-x-2 md:space-x-4 items-center overflow-x-auto">
-        <a href="#about" className="text-accent2 hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
-        <a href="#projects" className="text-accent2 hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Projects</a>
-        <a href="#skills" className="text-accent2 hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Skills</a>
-        <a href="#contact" className="text-accent2 hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+        <a href="#about" className="text-accent2 hover:text-accent px-2 py-1 rounded-md text-sm font-medium transition-colors">About</a>
+        <a href="#skills" className="text-accent2 hover:text-accent px-2 py-1 rounded-md text-sm font-medium transition-colors">Skills</a>
+        <a href="#projects" className="text-accent2 hover:text-accent px-2 py-1 rounded-md text-sm font-medium transition-colors">Projects</a>
+        <a href="#roadmap" className="text-accent2 hover:text-accent px-2 py-1 rounded-md text-sm font-medium transition-colors">Roadmap</a>
+        <a href="#blog" className="text-accent2 hover:text-accent px-2 py-1 rounded-md text-sm font-medium transition-colors">Blog</a>
+        <a href="#contact" className="text-accent2 hover:text-accent px-2 py-1 rounded-md text-sm font-medium transition-colors">Contact</a>
       </div>
     </div>
   </nav>
