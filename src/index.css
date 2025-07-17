@@ -43,3 +43,10 @@ body {
   opacity: 0.5;
   will-change: transform;
 }
+
+@media (pointer: coarse) {
+  #wand-cursor,
+  #wand-cursor-trail {
+    display: none !important;
+  }
+}
