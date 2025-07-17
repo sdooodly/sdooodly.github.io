@@ -20,7 +20,9 @@ const HeroSection = () => (
           Hi, I'm <span>Sdooodly</span>
         </h1>
         <p className="text-lg md:text-xl text-text mb-8">
-          Crying to code
+        From structural blueprints to architecting digital foundations on Linux, I like to build things that work. I'm obsessed with elegant system design, flowcharts that sing, and seamless integration!
+
+
         </p>
         <div className="flex justify-center md:justify-start space-x-4">
           {socialLinks.map((link) => (

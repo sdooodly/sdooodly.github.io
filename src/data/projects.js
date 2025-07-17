@@ -1,6 +1,6 @@
 export const projects = [
   {
-    title: 'Shivangi Gupta',
+    title: 'Marketing portfolio',
     description: 'A modern, responsive landing page for a marketing client, designed and developed as a freelance project.',
     techStack: ['HTML', 'CSS', 'JavaScript'],
     githubLink: 'https://github.com/sdooodly/shivangi-gupta',
@@ -9,7 +9,7 @@ export const projects = [
     freelance: true,
   },
   {
-    title: 'Landing Page Grandpa Joe',
+    title: 'Landing page',
     description: 'A creative, visually engaging landing page project, focusing on layout and user experience.',
     techStack: ['HTML', 'CSS', 'JavaScript'],
     githubLink: 'https://github.com/sdooodly/landing-page-grandpa-joe',
@@ -17,7 +17,7 @@ export const projects = [
     image: '/assets/projects/landing-page.png',
   },
   {
-    title: 'Odin Calculator',
+    title: 'Vintage calculator',
     description: 'A functional calculator app built as part of The Odin Project curriculum, featuring a clean UI and robust logic.',
     techStack: ['HTML', 'CSS', 'JavaScript'],
     githubLink: 'https://github.com/sdooodly/odin-calculator',
@@ -25,7 +25,7 @@ export const projects = [
     image: '/assets/projects/odin-calculator.png',
   },
   {
-    title: 'Ichiraku Ramen',
+    title: 'Ichiraku ramen',
     description: 'A themed restaurant website inspired by anime, showcasing menu, gallery, and contact features.',
     techStack: ['HTML', 'CSS', 'JavaScript'],
     githubLink: 'https://github.com/sdooodly/ichiraku-ramen',
@@ -33,7 +33,7 @@ export const projects = [
     image: '/assets/projects/ichiraku-ramen.png',
   },
   {
-    title: 'Etch-a-Sketch',
+    title: 'Etch-a-sketch',
     description: 'An interactive drawing app inspired by the classic Etch-a-Sketch toy, built with JavaScript.',
     techStack: ['HTML', 'CSS', 'JavaScript'],
     githubLink: 'https://github.com/sdooodly/etch-a-sketch',
@@ -41,7 +41,7 @@ export const projects = [
     image: '/assets/projects/etch-a-sketch.jpg',
   },
   {
-    title: 'Good Bois',
+    title: 'Good bois',
     description: 'A fun, pet-themed web project, demonstrating responsive design and playful UI elements.',
     techStack: ['HTML', 'CSS', 'JavaScript'],
     githubLink: 'https://github.com/sdooodly/good-bois',
@@ -49,7 +49,7 @@ export const projects = [
     image: '/assets/projects/good-bois.png',
   },
   {
-    title: 'Might Guy Responsive Web Design',
+    title: 'Responsive Website',
     description: 'A responsive web design project inspired by anime, focusing on accessibility and mobile-first principles.',
     techStack: ['HTML', 'CSS', 'JavaScript'],
     githubLink: 'https://github.com/sdooodly/might-guy-responsive-web-design',
