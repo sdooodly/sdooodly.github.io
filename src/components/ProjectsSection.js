@@ -193,7 +193,7 @@ const ProjectsSection = () => {
                   }} />
                   {/* 2. Stronger dark gradient at bottom for text readability */}
                   <div className="absolute inset-0 pointer-events-none" style={{
-                    background: 'linear-gradient(to bottom, rgba(10,10,20,0.0) 0%, rgba(10,10,20,0.97) 75%)'
+                    background: 'linear-gradient(to bottom, rgba(10,10,20,0.0) 50%, rgba(10,10,20,0.97) 100%)'
                   }} />
                   {/* Title and GitHub icon at bottom */}
                   <div
