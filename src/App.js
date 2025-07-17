@@ -51,7 +51,20 @@ const App = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-text font-inter">
+    <div className="min-h-screen bg-background text-text font-inter relative overflow-x-hidden">
+      {/* Unsplash flower fixed background with dark overlay */}
+      <div
+        className="fixed inset-0 w-full h-full -z-10 pointer-events-none"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1698748579277-2e49816e4916?auto=format&fit=crop&w=1500&q=80')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+          filter: 'brightness(0.35)'
+        }}
+      >
+        <div className="absolute inset-0 bg-black/80" />
+      </div>
       <Navbar />
       <div className="space-y-24 md:space-y-32">
         <HeroSection />

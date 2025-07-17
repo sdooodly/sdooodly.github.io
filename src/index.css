@@ -6,4 +6,41 @@ body {
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
+    cursor: none;
+}
+
+/* Custom glowing cursor */
+#wand-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.5) 60%, rgba(255,255,255,0.1) 100%);
+  box-shadow: 0 0 24px 8px rgba(255,255,255,0.7), 0 0 64px 16px rgba(255,255,255,0.3);
+  mix-blend-mode: lighten;
+  transition: transform 0.08s cubic-bezier(0.4,0,0.2,1), opacity 0.2s;
+  opacity: 0.95;
+  will-change: transform;
+}
+
+#wand-cursor-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 64px;
+  height: 64px;
+  pointer-events: none;
+  z-index: 9998;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 60%, rgba(255,255,255,0.05) 100%);
+  box-shadow: 0 0 48px 24px rgba(255,255,255,0.25), 0 0 128px 32px rgba(255,255,255,0.12);
+  filter: blur(2px);
+  mix-blend-mode: lighten;
+  transition: opacity 0.2s;
+  opacity: 0.5;
+  will-change: transform;
+}

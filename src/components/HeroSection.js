@@ -6,23 +6,21 @@ const socialLinks = [
 ];
 
 const HeroSection = () => (
-  <section id="about" className="container mx-auto px-4 py-20 text-center md:py-32 relative overflow-hidden">
-    {/* Premium overlay */}
-    <div className="absolute inset-0 bg-primary/60 rounded-3xl shadow-2xl pointer-events-none" style={{zIndex:1}}></div>
-    <div className="flex flex-col md:flex-row items-center justify-center gap-8 relative z-10">
-      <div className="w-32 h-32 md:w-48 md:h-48 bg-secondary rounded-full overflow-hidden shadow-xl border-4 border-accent">
+  <section id="about" className="container mx-auto px-4 py-20 text-center md:py-32 relative overflow-visible">
+    <div className="relative z-10 bg-glass/80 backdrop-blur-glass border border-accent2 shadow-lg rounded-3xl p-10 md:p-20 flex flex-col md:flex-row items-center justify-center gap-8">
+      <div className="w-32 h-32 md:w-48 md:h-48 bg-accent2 rounded-full overflow-hidden shadow-xl border-4 border-accent">
         <img
-          src="https://placehold.co/192x192/3E2723/000000?text=Your+Photo"
+          src="https://placehold.co/192x192/222/fff?text=Your+Photo"
           alt="Your Profile"
           className="w-full h-full object-cover"
-          onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/192x192/3E2723/000000?text=Your+Photo'; }}
+          onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/192x192/222/fff?text=Your+Photo'; }}
         />
       </div>
       <div className="text-center md:text-left max-w-2xl">
-        <h1 className="text-4xl md:text-6xl font-extrabold text-accent mb-4 leading-tight">
-          Hi, I'm <span className="text-accent">Sdooodly</span>
+        <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight text-white">
+          Hi, I'm <span className="underline decoration-accent2">Sdooodly</span>
         </h1>
-        <p className="text-lg md:text-xl text-accent mb-8">
+        <p className="text-lg md:text-xl text-white/90 mb-8">
           Crying to code
         </p>
         <div className="flex justify-center md:justify-start space-x-4">
@@ -32,7 +30,7 @@ const HeroSection = () => (
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-secondary text-accent p-3 rounded-full shadow-lg hover:bg-accent hover:text-primary transition-all duration-300 transform hover:scale-110"
+              className="bg-accent2/80 text-background p-3 rounded-full shadow hover:bg-accent hover:text-accent2 transition-all duration-300 transform hover:scale-110"
               aria-label={link.name}
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">

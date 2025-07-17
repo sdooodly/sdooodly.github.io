@@ -32,12 +32,21 @@
         theme: {
           extend: {
             colors: {
-              primary: '#3E2723', // Deep Dark Chocolate
-              secondary: '#5D4037', // Milk Chocolate Brown
-              accent: '#D7CCC8', // Creamy Caramel
-              background: '#000000', // Background Black
-              gray: '#A1887F', // Light Brownish Gray
-              text: '#FBF8F6', // Warm off-white text
+              background: '#0A0A0A',
+              accent: '#FF2D95', // Neon Pink
+              accent2: '#00E0FF', // Electric Blue
+              accent3: '#B6FF2D', // Lime Green
+              text: '#F8F8FF',
+              glass: 'rgba(30,30,40,0.7)',
+            },
+            boxShadow: {
+              neon: '0 0 16px 2px #FF2D95, 0 0 32px 8px #00E0FF',
+            },
+            backdropBlur: {
+              glass: '8px',
+            },
+            backgroundImage: {
+              'funky-gradient': 'linear-gradient(120deg, #FF2D95 0%, #00E0FF 50%, #B6FF2D 100%)',
             },
           },
         },
