@@ -4,9 +4,8 @@ import React from 'react';
 const App = () => {
   // Define social links and their icons (using Lucide React for modern icons)
   const socialLinks = [
-    { name: 'GitHub', url: 'https://github.com/your-username', icon: 'M15 22v-4a4.8 4.8 0 0 0-1-3.2V9.5c0-1.2.7-2 2-2s2 .8 2 2v2.5a4.8 4.8 0 0 0-1 3.2v4M8 20v-4a4.8 4.8 0 0 1-1-3.2V9.5c0-1.2.7-2 2-2s2 .8 2 2v2.5a4.8 4.8 0 0 1-1 3.2v4M12 2a4 4 0 0 0-4 4c0 1.2.7 2 2 2s2-.8 2-2c0-1.2-.7-2-2-2M12 22a4 4 0 0 0 4-4c0-1.2-.7-2-2-2s-2 .8-2 2c0 1.2.7 2 2 2' },
-    { name: 'LinkedIn', url: 'https://linkedin.com/in/your-username', icon: 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z' },
-    { name: 'Twitter', url: 'https://twitter.com/your-username', icon: 'M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2-.7 4.1-2.6 5.6-5-2.8-.3-5.5-1.7-7.3-4.3 1-.1 1.9 0 2.9.5C2.8 11.5 1 4.6 2 4c3.2 3.2 7.9 3.7 13.6 1.1 1.6-2.7 4.6-4.6 8.6-5.1z' },
+    { name: 'GitHub', url: 'https://github.com/sdooodly', icon: 'M15 22v-4a4.8 4.8 0 0 0-1-3.2V9.5c0-1.2.7-2 2-2s2 .8 2 2v2.5a4.8 4.8 0 0 0-1 3.2v4M8 20v-4a4.8 4.8 0 0 1-1-3.2V9.5c0-1.2.7-2 2-2s2 .8 2 2v2.5a4.8 4.8 0 0 1-1 3.2v4M12 2a4 4 0 0 0-4 4c0 1.2.7 2 2 2s2-.8 2-2c0-1.2-.7-2-2-2M12 22a4 4 0 0 0 4-4c0-1.2-.7-2-2-2s-2 .8-2 2c0 1.2.7 2 2 2' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/gayathri-gireesh-sujatha-3606ba189', icon: 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 0 0-4 2 2 0 0 0 0 4z' },
   ];
 
   // Define skills categories and their items
@@ -51,7 +50,7 @@ const App = () => {
       <nav className="bg-gray-800 p-4 shadow-lg sticky top-0 z-50">
         <div className="container mx-auto flex justify-between items-center flex-wrap">
           <a href="#home" className="text-2xl font-bold text-teal-400 rounded-lg p-2 hover:text-teal-300 transition-colors">
-            YourName.dev
+            Sdooodly
           </a>
           <div className="flex space-x-4 mt-2 md:mt-0">
             <a href="#about" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
@@ -76,10 +75,10 @@ const App = () => {
           </div>
           <div className="text-center md:text-left max-w-2xl">
             <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-4 leading-tight">
-              Hi, I'm <span className="text-teal-400">Your Name</span>
+              Hi, I'm <span className="text-teal-400">Sdooodly</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-300 mb-8">
-              A passionate <span className="font-semibold text-teal-300">Software Developer</span> focused on building impactful and user-friendly web applications. I thrive on solving complex problems and creating elegant solutions.
+              Crying to code
             </p>
             <div className="flex justify-center md:justify-start space-x-4">
               {socialLinks.map((link) => (
@@ -181,10 +180,14 @@ const App = () => {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold text-white mb-8">Get In Touch</h2>
           <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-            Have a project in mind or just want to say hello? Feel free to reach out! I'm always open to new opportunities and collaborations.
+            Contact me via LinkedIn, GitHub, or email:
+            <br />
+            <a href="https://www.linkedin.com/in/gayathri-gireesh-sujatha-3606ba189" className="text-teal-400 hover:underline block mt-2" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/sdooodly" className="text-teal-400 hover:underline block" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <span className="block text-gray-200 mt-2">Email: <a href="mailto:gayathrigs96@gmail.com" className="text-teal-400 hover:underline">gayathrigs96@gmail.com</a></span>
           </p>
           <a
-            href="mailto:your.email@example.com"
+            href="mailto:gayathrigs96@gmail.com"
             className="inline-flex items-center bg-teal-500 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:bg-teal-600 transition-colors duration-300 transform hover:scale-105"
           >
             <svg className="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
@@ -198,7 +201,7 @@ const App = () => {
       {/* Footer */}
       <footer className="bg-gray-900 py-8 text-center text-gray-400 text-sm">
         <div className="container mx-auto px-4">
-          <p>&copy; {new Date().getFullYear()} Your Name. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Sdooodly. All rights reserved.</p>
           <p className="mt-2">Built with <span className="text-red-500">&hearts;</span> and React + Tailwind CSS.</p>
         </div>
       </footer>
