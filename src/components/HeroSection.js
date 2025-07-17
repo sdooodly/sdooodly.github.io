@@ -16,13 +16,11 @@ const HeroSection = () => (
         />
       </div>
       <div className="text-center md:text-left max-w-2xl">
-        <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight text-text">
+        <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight text-text/90 font-inter">
           Hi, I'm <span>Sdooodly</span>
         </h1>
-        <p className="text-lg md:text-xl text-text mb-8">
+        <p className="text-xl md:text-2xl text-text/80 mb-10 leading-relaxed font-inter">
         From structural blueprints to architecting digital foundations on Linux, I like to build things that work. I'm obsessed with elegant system design, flowcharts that sing, and seamless integration!
-
-
         </p>
         <div className="flex justify-center md:justify-start space-x-4">
           {socialLinks.map((link) => (

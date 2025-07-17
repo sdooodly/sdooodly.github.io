@@ -3,7 +3,7 @@ import React, { useRef, useEffect, useState } from 'react';
 const roadmap = [
   {
     period: '2014 - 2018',
-    role: 'Undergraduate in Civil Engineering',
+    role: 'B.E. Civil Engineering',
     org: 'LBS Institute of Technology',
     icon: (
       <svg className="w-8 h-8 text-accent2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 2v20m0 0l-4-4m4 4l4-4" /></svg>
@@ -103,7 +103,7 @@ const RoadmapSection = () => {
     <section id="roadmap" className="py-16 md:py-24 relative overflow-visible mt-20">
       <div className="relative z-10 bg-glass/80 backdrop-blur-glass shadow-lg rounded-3xl p-8 md:p-16 max-w-3xl mx-auto overflow-visible" ref={containerRef}>
         <ParallaxShapes />
-        <h2 className="text-3xl md:text-4xl font-bold mb-10 md:mb-12 text-center text-text">Roadmap</h2>
+        <h2 className="text-5xl md:text-5xl font-extrabold mb-14 md:mb-16 text-center text-text/90 font-inter">Roadmap</h2>
         <div className="relative flex flex-col items-center">
           {/* Animated vertical line */}
           <div className="absolute left-1/2 top-0 h-full w-1 bg-gradient-to-b from-accent2/60 to-accent3/30 rounded-full -translate-x-1/2 z-0 overflow-hidden">
@@ -135,8 +135,8 @@ const RoadmapSection = () => {
                     className={`md:w-1/2 flex flex-col items-${isLeft ? 'start' : 'end'} md:items-${isLeft ? 'start' : 'end'} px-0 md:px-8 py-2 md:py-4 transition-all duration-700 ${visible[i] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${isLeft ? 'md:text-left' : 'md:text-right'} text-center`}
                   >
                     <div className="text-accent2 font-semibold text-base md:text-lg mb-1">{item.period}</div>
-                    <div className="text-lg md:text-xl font-bold text-text mb-1">{item.role}</div>
-                    <div className="text-text/70 text-sm md:text-base font-medium">{item.org}</div>
+                    <div className="text-lg md:text-xl font-bold text-text/90 mb-1 font-inter">{item.role}</div>
+                    <div className="text-text/70 text-base md:text-lg font-medium mb-2">{item.org}</div>
                   </div>
                 </li>
               );

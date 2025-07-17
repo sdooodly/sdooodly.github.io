@@ -34,7 +34,7 @@ const ContactSection = () => {
   return (
     <section id="contact" className="py-16 md:py-24 relative overflow-visible mt-20">
       <div className="relative z-10 bg-glass/80 backdrop-blur-glass shadow-lg rounded-3xl p-10 md:p-20 text-center flex flex-col items-center">
-        <h2 className="text-4xl font-bold mb-8 text-text">Get in touch!</h2>
+        <h2 className="text-5xl font-extrabold mb-12 text-text/90 font-inter">Get in touch!</h2>
         <div className="flex flex-row gap-10 justify-center items-center mb-10">
           <a
             href="https://www.linkedin.com/in/gayathri-gireesh-sujatha-3606ba189"
@@ -75,7 +75,7 @@ const ContactSection = () => {
             value={form.name}
             onChange={handleChange}
             placeholder="Your Name"
-            className="px-4 py-3 rounded-lg bg-black/50 text-text placeholder:text-accent2 focus:outline-none focus:ring-2 focus:ring-accent2"
+            className="px-5 py-4 rounded-lg bg-black/50 text-lg text-text/90 placeholder:text-accent2/70 focus:outline-none focus:ring-2 focus:ring-accent2 font-inter"
             required
           />
           <input
@@ -84,7 +84,7 @@ const ContactSection = () => {
             value={form.email}
             onChange={handleChange}
             placeholder="Your Email"
-            className="px-4 py-3 rounded-lg bg-black/50 text-text placeholder:text-accent2 focus:outline-none focus:ring-2 focus:ring-accent2"
+            className="px-5 py-4 rounded-lg bg-black/50 text-lg text-text/90 placeholder:text-accent2/70 focus:outline-none focus:ring-2 focus:ring-accent2 font-inter"
             required
           />
           <textarea
@@ -92,7 +92,7 @@ const ContactSection = () => {
             value={form.message}
             onChange={handleChange}
             placeholder="Your Message"
-            className="px-4 py-3 rounded-lg bg-black/50 text-text placeholder:text-accent2 focus:outline-none focus:ring-2 focus:ring-accent2 min-h-[120px]"
+            className="px-5 py-4 rounded-lg bg-black/50 text-lg text-text/90 placeholder:text-accent2/70 focus:outline-none focus:ring-2 focus:ring-accent2 min-h-[120px] font-inter"
             required
           />
           <button
