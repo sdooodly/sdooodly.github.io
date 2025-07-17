@@ -28,16 +28,29 @@
     <!-- Tailwind CSS CDN - for quick setup, replace with proper build process later -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+      // Set up CSS variables for dark and light mode
+      document.addEventListener('DOMContentLoaded', function() {
+        const setThemeVars = (theme) => {
+          if (theme === 'light') {
+            document.documentElement.classList.add('light');
+          } else {
+            document.documentElement.classList.remove('light');
+          }
+        };
+        // Optionally, set theme from localStorage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) setThemeVars(savedTheme);
+      });
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              background: '#0A0A0A',
-              accent: '#FF2D95', // Neon Pink
-              accent2: '#00E0FF', // Electric Blue
-              accent3: '#B6FF2D', // Lime Green
-              text: '#F8F8FF',
-              glass: 'rgba(30,30,40,0.7)',
+              background: 'var(--color-background)',
+              accent: 'var(--color-accent)',
+              accent2: 'var(--color-accent2)',
+              accent3: 'var(--color-accent3)',
+              text: 'var(--color-text)',
+              glass: 'var(--color-glass)',
             },
             boxShadow: {
               neon: '0 0 16px 2px #FF2D95, 0 0 32px 8px #00E0FF',
@@ -54,6 +67,22 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+      :root {
+        --color-background: #0A0A0A;
+        --color-accent: #FF2D95;
+        --color-accent2: #00E0FF;
+        --color-accent3: #B6FF2D;
+        --color-text: #F8F8FF;
+        --color-glass: rgba(30,30,40,0.7);
+      }
+      .light {
+        --color-background: #F8F8FF;
+        --color-accent: #FF2D95;
+        --color-accent2: #00B4D8;
+        --color-accent3: #3A86FF;
+        --color-text: #181818;
+        --color-glass: rgba(255,255,255,0.7);
+      }
       /* Apply Inter font globally */
       body {
         font-family: 'Inter', sans-serif;

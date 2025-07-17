@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ProjectsSection from './components/ProjectsSection';
@@ -50,8 +50,18 @@ const App = () => {
     },
   ];
 
+  // Theme state and effect
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme') || 'dark';
+  });
+  useEffect(() => {
+    document.documentElement.classList.toggle('light', theme === 'light');
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
+
   return (
-    <div className="min-h-screen bg-background text-text font-inter relative overflow-x-hidden">
+    <div className={`min-h-screen bg-background text-text font-inter overflow-x-hidden`}>
       {/* Unsplash flower fixed background with dark overlay */}
       <div
         className="fixed inset-0 w-full h-full -z-10 pointer-events-none"
@@ -65,7 +75,7 @@ const App = () => {
       >
         <div className="absolute inset-0 bg-black/80" />
       </div>
-      <Navbar />
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
       <div className="space-y-24 md:space-y-32">
         <HeroSection />
         <ProjectsSection />

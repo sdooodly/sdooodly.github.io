@@ -3,8 +3,8 @@ import React from 'react';
 const ContactSection = () => (
   <section id="contact" className="py-16 md:py-24 relative overflow-visible">
     <div className="relative z-10 bg-glass/80 backdrop-blur-glass border border-accent2 shadow-lg rounded-3xl p-10 md:p-20 text-center">
-      <h2 className="text-4xl font-bold mb-8 text-white">Get In Touch</h2>
-      <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+      <h2 className="text-4xl font-bold mb-8 text-text">Get In Touch</h2>
+      <p className="text-lg text-text mb-8 max-w-2xl mx-auto">
         Contact me via LinkedIn, GitHub, or email:
         <br />
         <a href="https://www.linkedin.com/in/gayathri-gireesh-sujatha-3606ba189" className="text-accent2 hover:underline block mt-2" target="_blank" rel="noopener noreferrer">LinkedIn</a>

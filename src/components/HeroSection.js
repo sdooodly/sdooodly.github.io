@@ -17,10 +17,10 @@ const HeroSection = () => (
         />
       </div>
       <div className="text-center md:text-left max-w-2xl">
-        <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight text-white">
+        <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight text-text">
           Hi, I'm <span className="underline decoration-accent2">Sdooodly</span>
         </h1>
-        <p className="text-lg md:text-xl text-white/90 mb-8">
+        <p className="text-lg md:text-xl text-text mb-8">
           Crying to code
         </p>
         <div className="flex justify-center md:justify-start space-x-4">
@@ -30,10 +30,10 @@ const HeroSection = () => (
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-accent2/80 text-background p-3 rounded-full shadow hover:bg-accent hover:text-accent2 transition-all duration-300 transform hover:scale-110"
+              className="bg-accent2/80 text-text p-3 rounded-full shadow hover:bg-accent hover:text-accent2 transition-all duration-300 transform hover:scale-110"
               aria-label={link.name}
             >
-              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-6 h-6 text-text" fill="currentColor" viewBox="0 0 24 24">
                 <path d={link.icon} />
               </svg>
             </a>

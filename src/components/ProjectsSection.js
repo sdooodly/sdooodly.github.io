@@ -30,7 +30,7 @@ const projects = [
 const ProjectsSection = () => (
   <section id="projects" className="py-16 md:py-24 relative overflow-visible">
     <div className="relative z-10 bg-glass/80 backdrop-blur-glass border border-accent2 shadow-lg rounded-3xl p-10 md:p-20">
-      <h2 className="text-4xl font-bold text-center mb-12 text-white">My Projects</h2>
+      <h2 className="text-4xl font-bold text-center mb-12 text-text">My Projects</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => (
           <div key={index} className="bg-glass/80 backdrop-blur-glass border border-accent2 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
@@ -41,8 +41,8 @@ const ProjectsSection = () => (
               onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x400/222/fff?text=Project'; }}
             />
             <div className="p-6">
-              <h3 className="text-2xl font-semibold text-white mb-3">{project.title}</h3>
-              <p className="text-white/90 text-sm mb-4">{project.description}</p>
+              <h3 className="text-2xl font-semibold text-text mb-3">{project.title}</h3>
+              <p className="text-text text-sm mb-4">{project.description}</p>
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.techStack.map((tech, i) => (
                   <span key={i} className="bg-background text-accent2 text-xs px-3 py-1 rounded-full border border-accent2">
@@ -57,7 +57,7 @@ const ProjectsSection = () => (
                   rel="noopener noreferrer"
                   className="text-accent2 hover:text-accent font-medium flex items-center gap-1 transition-colors"
                 >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-accent2" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2V9.5c0-1.2.7-2 2-2s2 .8 2 2v2.5a4.8 4.8 0 0 0-1 3.2v4M8 20v-4a4.8 4.8 0 0 1-1-3.2V9.5c0-1.2.7-2 2-2s2 .8 2 2v2.5a4.8 4.8 0 0 1-1 3.2v4M12 2a4 4 0 0 0-4 4c0 1.2.7 2 2 2s2-.8 2-2c0-1.2-.7-2-2-2M12 22a4 4 0 0 0 4-4c0-1.2-.7-2-2-2s-2 .8-2 2c0 1.2.7 2 2 2" />
                   </svg>
                   GitHub
