@@ -10,15 +10,14 @@ const HeroSection = () => (
     <div className="relative z-10 bg-glass/80 backdrop-blur-glass border border-accent2 shadow-lg rounded-3xl p-10 md:p-20 flex flex-col md:flex-row items-center justify-center gap-8">
       <div className="w-32 h-32 md:w-48 md:h-48 bg-accent2 rounded-full overflow-hidden shadow-xl border-4 border-accent">
         <img
-          src="https://placehold.co/192x192/222/fff?text=Your+Photo"
+          src="/assets/flower.jpg"
           alt="Your Profile"
           className="w-full h-full object-cover"
-          onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/192x192/222/fff?text=Your+Photo'; }}
         />
       </div>
       <div className="text-center md:text-left max-w-2xl">
         <h1 className="text-4xl md:text-6xl font-extrabold mb-4 leading-tight text-text">
-          Hi, I'm <span className="underline decoration-accent2">Sdooodly</span>
+          Hi, I'm <span>Sdooodly</span>
         </h1>
         <p className="text-lg md:text-xl text-text mb-8">
           Crying to code

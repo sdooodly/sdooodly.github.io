@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ProjectsSection from './components/ProjectsSection';
@@ -50,18 +50,8 @@ const App = () => {
     },
   ];
 
-  // Theme state and effect
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('theme') || 'dark';
-  });
-  useEffect(() => {
-    document.documentElement.classList.toggle('light', theme === 'light');
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
-
   return (
-    <div className={`min-h-screen bg-background text-text font-inter overflow-x-hidden`}>
+    <div className={`min-h-screen text-text font-inter overflow-x-hidden`}>
       {/* Unsplash flower fixed background with dark overlay */}
       <div
         className="fixed inset-0 w-full h-full -z-10 pointer-events-none"
@@ -70,13 +60,13 @@ const App = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
-          filter: 'brightness(0.35)'
+          filter: 'none'
         }}
       >
-        <div className="absolute inset-0 bg-black/80" />
+        <div className="absolute inset-0 bg-black/40" />
       </div>
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <div className="space-y-24 md:space-y-32">
+      <Navbar />
+      <div className="space-y-12 md:space-y-16">
         <HeroSection />
         <ProjectsSection />
         <SkillsSection />

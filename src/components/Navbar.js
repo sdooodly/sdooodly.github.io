@@ -7,8 +7,8 @@ const MoonIcon = () => (
   <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
 );
 
-const Navbar = ({ theme, toggleTheme }) => (
-  <nav className="bg-background py-1 px-3 shadow-neon fixed top-0 left-1/2 transform -translate-x-1/2 max-w-5xl w-[99vw] md:w-[60vw] rounded-full z-50 border border-accent2">
+const Navbar = () => (
+  <nav className="py-1 px-3 shadow-neon fixed top-0 w-full z-50 border-b border-accent2 bg-black/40">
     <div className="container mx-auto flex justify-between items-center flex-wrap">
       <a href="#home" className="font-bold bg-gradient-to-r from-accent to-accent2 text-transparent bg-clip-text rounded-lg p-2 hover:text-accent2 transition-colors drop-shadow-[0_2px_16px_#00E0FF] text-lg md:text-2xl md:block hidden">
         Sdooodly
@@ -21,13 +21,6 @@ const Navbar = ({ theme, toggleTheme }) => (
         <a href="#projects" className="text-accent2 hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Projects</a>
         <a href="#skills" className="text-accent2 hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Skills</a>
         <a href="#contact" className="text-accent2 hover:text-accent px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
-        <button
-          onClick={toggleTheme}
-          aria-label="Toggle theme"
-          className="ml-2 p-2 rounded-full border border-accent2 hover:bg-accent2 hover:text-background transition-colors focus:outline-none focus:ring-2 focus:ring-accent2"
-        >
-          {theme === 'light' ? <SunIcon /> : <MoonIcon />}
-        </button>
       </div>
     </div>
   </nav>
