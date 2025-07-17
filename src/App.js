@@ -9,13 +9,15 @@ import RoadmapSection from './components/RoadmapSection';
 import BlogSection from './components/BlogSection';
 import { motion } from 'framer-motion';
 
+const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 640px)').matches;
+
 const sectionVariants = {
   hidden: { opacity: 0, y: 60 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.4, ease: [0.33, 1, 0.68, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: isMobile ? 0.7 : 1.4, ease: [0.33, 1, 0.68, 1] } },
 };
 const bgVariants = {
   hidden: { opacity: 0, scale: 0.98 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 1.2, ease: [0.33, 1, 0.68, 1] } },
+  visible: { opacity: 1, scale: 1, transition: { duration: isMobile ? 0.6 : 1.2, ease: [0.33, 1, 0.68, 1] } },
 };
 
 const sectionBgs = [
