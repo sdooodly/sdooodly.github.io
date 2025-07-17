@@ -136,7 +136,7 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" className="py-16 md:py-24 relative overflow-visible mt-20">
+    <section id="projects" className="py-16 md:py-24 relative overflow-visible">
       <div className="relative z-10 bg-glass/80 backdrop-blur-glass shadow-2xl rounded-3xl p-6 md:p-16 overflow-hidden">
         <h2 className="text-5xl font-extrabold text-center mb-14 text-text/90 font-inter">Projects</h2>
         <div

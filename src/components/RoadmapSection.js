@@ -100,7 +100,7 @@ const RoadmapSection = () => {
   }, []);
 
   return (
-    <section id="roadmap" className="py-16 md:py-24 relative overflow-visible mt-20">
+    <section id="roadmap" className="py-16 md:py-24 relative overflow-visible">
       <div className="relative z-10 bg-glass/80 backdrop-blur-glass shadow-lg rounded-3xl p-8 md:p-16 max-w-3xl mx-auto overflow-visible" ref={containerRef}>
         <ParallaxShapes />
         <h2 className="text-5xl md:text-5xl font-extrabold mb-14 md:mb-16 text-center text-text/90 font-inter">Roadmap</h2>

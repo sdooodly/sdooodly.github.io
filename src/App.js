@@ -6,6 +6,7 @@ import SkillsSection from './components/SkillsSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import RoadmapSection from './components/RoadmapSection';
+import BlogSection from './components/BlogSection';
 import { motion } from 'framer-motion';
 
 const sectionVariants = {
@@ -30,7 +31,8 @@ const App = () => {
     <HeroSection key="hero" />, 
     <SkillsSection key="skills" />, 
     <ProjectsSection key="projects" />, 
-    <RoadmapSection key="roadmap" />, 
+    <RoadmapSection key="roadmap" />,
+    <BlogSection key="blog" />, 
     <ContactSection key="contact" />
   ];
   return (

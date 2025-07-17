@@ -3,7 +3,7 @@ import { skills } from '../data/skills';
 import SkillsRadarChart from './SkillsRadarChart';
 
 const SkillsSection = () => (
-  <section id="skills" className="py-16 md:py-24 relative overflow-visible mt-20">
+  <section id="skills" className="py-16 md:py-24 relative overflow-visible">
     <div className="relative z-10 bg-glass/80 backdrop-blur-glass border border-accent2 shadow-lg rounded-3xl p-10 md:p-20">
       <h2 className="text-5xl font-extrabold text-center mb-14 text-text/90 font-inter">Skills</h2>
       <SkillsRadarChart />
