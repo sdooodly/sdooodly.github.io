@@ -138,7 +138,7 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="py-16 md:py-24 relative overflow-visible mt-20">
       <div className="relative z-10 bg-glass/80 backdrop-blur-glass shadow-2xl rounded-3xl p-6 md:p-16 overflow-hidden">
-        <h2 className="text-4xl font-bold text-center mb-12 text-text">My Projects</h2>
+        <h2 className="text-4xl font-bold text-center mb-12 text-text">Projects</h2>
         <div
           className="flex items-center justify-center gap-4 mb-8 select-none"
           onMouseEnter={handleMouseEnter}

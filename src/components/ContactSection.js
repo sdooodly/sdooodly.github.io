@@ -34,7 +34,7 @@ const ContactSection = () => {
   return (
     <section id="contact" className="py-16 md:py-24 relative overflow-visible mt-20">
       <div className="relative z-10 bg-glass/80 backdrop-blur-glass shadow-lg rounded-3xl p-10 md:p-20 text-center flex flex-col items-center">
-        <h2 className="text-4xl font-bold mb-8 text-text">Get In Touch</h2>
+        <h2 className="text-4xl font-bold mb-8 text-text">Get in touch!</h2>
         <div className="flex flex-row gap-10 justify-center items-center mb-10">
           <a
             href="https://www.linkedin.com/in/gayathri-gireesh-sujatha-3606ba189"
