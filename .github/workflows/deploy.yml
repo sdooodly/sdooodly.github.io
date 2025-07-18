@@ -24,6 +24,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          REACT_APP_SHEETDB_ENDPOINT: ${{ secrets.REACT_APP_SHEETDB_ENDPOINT }}
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
