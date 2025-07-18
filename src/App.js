@@ -54,25 +54,53 @@ const App = () => {
       </div>
       <Navbar />
       <div className="space-y-12 md:space-y-16 pt-20">
-        {sections.map((SectionComponent, idx) => (
-          <motion.section
-            key={idx}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.4 }}
-            variants={sectionVariants}
-            className="relative"
-          >
-            {/* Subtle animated background layer */}
-            <motion.div
-              className={`absolute inset-0 -z-10 pointer-events-none transition-colors duration-1000 ${sectionBgs[idx]}`}
-              variants={bgVariants}
-              initial="hidden"
-              animate="visible"
-            />
-            {SectionComponent}
-          </motion.section>
-        ))}
+        {sections.map((SectionComponent, idx) => {
+          // On mobile, only keep animation for RoadmapSection (idx === 3)
+          if (isMobile) {
+            if (idx === 3) {
+              // RoadmapSection: keep animation (handled internally)
+              return (
+                <section key={idx} className="relative">
+                  <div
+                    className={`absolute inset-0 -z-10 pointer-events-none transition-colors duration-1000 ${sectionBgs[idx]}`}
+                  />
+                  {SectionComponent}
+                </section>
+              );
+            } else {
+              // All other sections: no animation, no transition
+              return (
+                <section key={idx} className="relative">
+                  <div
+                    className={`absolute inset-0 -z-10 pointer-events-none ${sectionBgs[idx]}`}
+                  />
+                  {SectionComponent}
+                </section>
+              );
+            }
+          } else {
+            // Animated on desktop
+            return (
+              <motion.section
+                key={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.4 }}
+                variants={sectionVariants}
+                className="relative"
+              >
+                {/* Subtle animated background layer */}
+                <motion.div
+                  className={`absolute inset-0 -z-10 pointer-events-none transition-colors duration-1000 ${sectionBgs[idx]}`}
+                  variants={bgVariants}
+                  initial="hidden"
+                  animate="visible"
+                />
+                {SectionComponent}
+              </motion.section>
+            );
+          }
+        })}
       </div>
       <Footer />
     </div>

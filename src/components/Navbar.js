@@ -8,7 +8,7 @@ const MoonIcon = () => (
 );
 
 const Navbar = () => (
-  <nav className="py-0.5 px-3 shadow-neon fixed top-0 w-full z-50 border-b border-accent2 bg-black/40">
+  <nav className="py-0.5 px-3 shadow-neon fixed top-0 w-full z-50 border-b border-accent2 bg-black/65">
     <div className="container mx-auto flex justify-between items-center flex-wrap">
       <a href="#home" className="font-bold bg-gradient-to-r from-accent to-accent2 text-transparent bg-clip-text rounded-lg p-1 hover:text-accent2 transition-colors drop-shadow-[0_2px_16px_#00E0FF] text-lg md:text-2xl md:block hidden">
         Sdooodly
