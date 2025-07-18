@@ -1,4 +1,4 @@
-name: Deploy Site
+name: Deploy site
 
 on:
   push:
@@ -25,7 +25,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      # Example: Deploy to GitHub Pages (adjust if using another host)
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
