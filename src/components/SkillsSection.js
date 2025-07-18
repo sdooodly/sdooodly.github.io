@@ -10,10 +10,12 @@ const SkillsSection = () => {
 
   if (isMobile) {
     return (
-      <section id="skills" className="py-16 md:py-24 relative overflow-visible">
+      <section id="skills" className="py-16 md:py-24 relative overflow-visible pb-32">
         <div className="relative z-10 bg-glass/80 backdrop-blur-glass border border-accent2 shadow-lg rounded-3xl p-6 md:p-20">
-          <h2 className="text-4xl md:text-4xl font-extrabold text-center mb-10 text-text/90 font-inter">Skills</h2>
-          <SkillsRadarChart />
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-text/90 font-inter" style={{textShadow: '0 2px 8px rgba(0,224,255,0.12)'}}>Skills</h2>
+          <div className="overflow-visible min-h-[340px] mt-4">
+            <SkillsRadarChart />
+          </div>
           <div className="flex flex-col gap-4 mt-8">
             {categories.map(([category, items], idx) => (
               <div key={category} className="bg-glass/80 border border-accent2 rounded-xl shadow-lg">
@@ -36,9 +38,10 @@ const SkillsSection = () => {
                 </button>
                 <div
                   id={`skills-panel-${idx}`}
-                  className={`overflow-hidden transition-all duration-300 ${openIdx === idx ? 'max-h-96 py-2 px-6' : 'max-h-0 px-6 py-0'}`}
+                  className={`overflow-visible transition-all duration-300 ${openIdx === idx ? 'max-h-[600px] py-2 px-6' : 'max-h-0 px-6 py-0'}`}
                   style={{
                     transitionProperty: 'max-height, padding',
+                    overflowY: openIdx === idx ? 'auto' : 'hidden',
                   }}
                 >
                   {openIdx === idx && (
@@ -66,7 +69,7 @@ const SkillsSection = () => {
   return (
     <section id="skills" className="py-16 md:py-24 relative overflow-visible">
       <div className="relative z-10 bg-glass/80 backdrop-blur-glass border border-accent2 shadow-lg rounded-3xl p-10 md:p-20">
-        <h2 className="text-4xl md:text-4xl font-extrabold text-center mb-14 text-text/90 font-inter">Skills</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-14 text-text/90 font-inter" style={{textShadow: '0 2px 8px rgba(0,224,255,0.12)'}}>Skills</h2>
         <SkillsRadarChart />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-12">
           {categories.map(([category, items]) => (

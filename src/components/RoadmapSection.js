@@ -95,7 +95,7 @@ const RoadmapSection = () => {
       const sectionTop = rect.top + scrollY;
       const sectionHeight = rect.height;
       const windowBottom = scrollY + winH;
-      let percent = (windowBottom - sectionTop) / sectionHeight;
+      let percent = (windowBottom - sectionTop) / (sectionHeight * 1.4); // slower line
       percent = Math.max(0, Math.min(percent, 1));
       setLineHeight(percent * 100);
     };
@@ -105,13 +105,63 @@ const RoadmapSection = () => {
   }, []);
 
   return (
-    <section id="roadmap" className="py-16 md:py-24 relative overflow-visible">
-      <div className="relative z-10 bg-glass/80 backdrop-blur-glass shadow-lg rounded-3xl p-8 md:p-16 max-w-3xl mx-auto overflow-visible" ref={containerRef}>
+    <section id="roadmap" className="py-16 md:py-24 relative overflow-visible" ref={containerRef}>
+      <div className="relative z-10 bg-glass/80 backdrop-blur-glass shadow-lg rounded-3xl p-8 md:p-16 max-w-3xl mx-auto overflow-visible">
         <ParallaxShapes />
-        <h2 className="text-5xl md:text-5xl font-extrabold mb-14 md:mb-16 text-center text-text/90 font-inter">Roadmap</h2>
-        <div className="relative flex flex-col items-center">
-          {/* Animated vertical line */}
-          <div className="absolute left-1/2 top-0 h-full w-1 bg-gradient-to-b from-accent2/60 to-accent3/30 rounded-full -translate-x-1/2 z-0 overflow-hidden">
+        <h2 className="text-3xl md:text-4xl font-bold mb-14 md:mb-16 text-center text-text/90 font-inter" style={{textShadow: '0 2px 8px rgba(0,224,255,0.12)'}}>Roadmap</h2>
+        {/* Mobile: Card-based layout */}
+        <div className="relative flex flex-col gap-8 md:hidden">
+          {/* Animated vertical line with moving circle on the left */}
+          <div className="absolute left-4 top-0 h-full w-1 bg-gradient-to-b from-accent2/80 to-accent3/40 rounded-full z-10 overflow-hidden">
+            <div
+              className="absolute left-0 top-0 w-full bg-gradient-to-b from-accent2 to-accent3 rounded-full transition-all duration-200"
+              style={{ height: `${lineHeight}%`, minHeight: 40, maxHeight: '100%' }}
+            />
+            {/* Moving accent circle at the tip */}
+            <div
+              className="absolute left-1/2 -translate-x-1/2 w-6 h-6 bg-accent2 rounded-full border-4 border-background shadow-lg transition-all duration-200"
+              style={{ top: `calc(${lineHeight}% - 12px)` }}
+            />
+          </div>
+          {roadmap.map((item, i) => (
+            <div key={i} className="relative flex items-start bg-black/30 rounded-xl shadow-lg border border-accent2/30 pl-4 pr-4 py-6">
+              {/* Removed accent bar and dot */}
+              <div className="flex flex-col pl-6 w-full">
+                <div className="text-accent2 font-semibold text-base mb-1">{item.period}</div>
+                <div className="text-lg font-bold text-text/90 mb-1 font-inter">{item.role}</div>
+                <div className="text-text/70 text-base font-medium mb-2">{item.org}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* Desktop: Original timeline */}
+        <div className="relative flex-col items-center hidden md:flex">
+          {/* Glowy threads behind desktop timeline */}
+          {[...Array(40)].map((_, idx) => (
+            <svg
+              key={idx}
+              className="absolute top-0 h-full w-2 pointer-events-none z-0"
+              style={{
+                left: `calc(50% + ${(idx - 20) * 3}px)`,
+                filter: 'drop-shadow(0 0 16px #fff) drop-shadow(0 0 8px #fff)',
+                opacity: 0.13 + 0.09 * Math.abs(Math.sin(idx)),
+              }}
+              viewBox="0 0 4 1200"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M2 0 Q4 60 2 120 Q0 180 2 240 Q4 300 2 360 Q0 420 2 480 Q4 540 2 600 Q0 660 2 720 Q4 780 2 840 Q0 900 2 960 Q4 1020 2 1080 Q0 1140 2 1200"
+                stroke="white"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                opacity="1"
+              />
+            </svg>
+          ))}
+          {/* Animated vertical line (desktop only) */}
+          <div className="absolute left-1/2 top-0 h-full w-2 bg-gradient-to-b from-accent2/80 to-accent3/40 rounded-full -translate-x-1/2 z-10 overflow-hidden">
             <div
               className="absolute left-0 top-0 w-full bg-gradient-to-b from-accent2 to-accent3 rounded-full transition-all duration-200"
               style={{ height: `${lineHeight}%`, minHeight: 40, maxHeight: '100%' }}
@@ -119,28 +169,40 @@ const RoadmapSection = () => {
           </div>
           <ol className="relative z-10 w-full space-y-20 md:space-y-24">
             {roadmap.map((item, i) => {
-              const isLeft = i % 2 === 0;
               const isCurrent = i === roadmap.length - 1;
               return (
                 <li
                   key={i}
                   data-idx={i}
-                  className={`timeline-item group flex flex-col md:flex-row items-center w-full relative ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-                  style={{ minHeight: 100 }}
+                  className="timeline-item group w-full relative md:min-h-[120px] min-h-[100px]"
                 >
-                  {/* Icon and line */}
-                  <div className="flex flex-col items-center md:w-1/2 md:justify-center md:items-end md:pr-8 md:pl-0 md:order-none order-2">
-                    <div className={`relative z-10 bg-background border-4 ${isCurrent ? 'border-accent animate-pulse-glow' : 'border-accent2'} rounded-full flex items-center justify-center shadow-lg mb-2 transition-all duration-200`}>
-                      {item.icon}
-                      {isCurrent && <span className="absolute inset-0 rounded-full border-4 border-accent2/40 animate-pulse-glow2" />}
+                  {/* Desktop: alternating content sides, centered dot */}
+                  <div className="hidden md:flex w-full items-center relative">
+                    {/* Left content */}
+                    <div className={`w-1/2 pr-8 flex flex-col items-end text-right ${i % 2 === 0 ? '' : 'opacity-0 pointer-events-none'}`}
+                         style={{zIndex: 1}}>
+                      <div className="text-accent2 font-semibold text-base md:text-lg mb-1">{item.period}</div>
+                      <div className="text-lg md:text-xl font-bold text-text/90 mb-1 font-inter md:whitespace-nowrap">{item.role}</div>
+                      <div className="text-text/70 text-base md:text-lg font-medium mb-2">{item.org}</div>
+                    </div>
+                    {/* Centered dot: remove extra outline for last item */}
+                    <div className="absolute left-1/2 top-0 -translate-x-1/2 flex flex-col items-center z-10" style={{marginBottom: 0}}>
+                      <div className={`bg-background border-4 ${isCurrent ? 'border-accent2' : 'border-accent2'} rounded-full flex items-center justify-center shadow-lg mb-2 transition-all duration-200`}>
+                        {item.icon}
+                      </div>
+                    </div>
+                    {/* Right content */}
+                    <div className={`w-1/2 pl-8 flex flex-col items-start text-left ${i % 2 !== 0 ? '' : 'opacity-0 pointer-events-none'}`}
+                         style={{zIndex: 1}}>
+                      <div className="text-accent2 font-semibold text-base md:text-lg mb-1">{item.period}</div>
+                      <div className="text-lg md:text-xl font-bold text-text/90 mb-1 font-inter md:whitespace-nowrap">{item.role}</div>
+                      <div className="text-text/70 text-base md:text-lg font-medium mb-2">{item.org}</div>
                     </div>
                   </div>
-                  {/* Content */}
-                  <div
-                    className={`md:w-1/2 flex flex-col items-${isLeft ? 'start' : 'end'} md:items-${isLeft ? 'start' : 'end'} px-0 md:px-8 py-2 md:py-4 transition-all duration-200 ${visible[i] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${isLeft ? 'md:text-left' : 'md:text-right'} text-center`}
-                  >
+                  {/* Mobile: stacked content */}
+                  <div className="md:hidden flex flex-col px-0 md:px-8 py-2 md:py-4 transition-all duration-200 text-center md:pl-0 pl-2 ml-auto mr-auto" style={{zIndex: 1}}>
                     <div className="text-accent2 font-semibold text-base md:text-lg mb-1">{item.period}</div>
-                    <div className="text-lg md:text-xl font-bold text-text/90 mb-1 font-inter">{item.role}</div>
+                    <div className="text-lg md:text-xl font-bold text-text/90 mb-1 font-inter md:whitespace-nowrap">{item.role}</div>
                     <div className="text-text/70 text-base md:text-lg font-medium mb-2">{item.org}</div>
                   </div>
                 </li>

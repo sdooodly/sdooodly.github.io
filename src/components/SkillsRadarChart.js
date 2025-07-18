@@ -24,6 +24,7 @@ const categoryColors = {
 
 const SkillsRadarChart = () => {
   const [selected, setSelected] = useState(categories[0]);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
   const data = {
     labels: skills[selected].map(s => s.name),
     datasets: [
@@ -52,13 +53,14 @@ const SkillsRadarChart = () => {
         suggestedMax: 10,
         pointLabels: {
           color: '#F8F8FF',
-          font: { size: 16, family: 'Inter, sans-serif' },
+          font: { size: isMobile ? 10 : 16, family: 'DM Sans, Inter, Montserrat, Poppins, sans-serif' },
         },
         grid: { color: 'rgba(255,255,255,0.1)' },
         ticks: {
           color: '#B6FF2D',
           stepSize: 2,
           backdropColor: 'transparent',
+          font: { size: isMobile ? 10 : 14, family: 'DM Sans, Inter, Montserrat, Poppins, sans-serif' },
         },
       },
     },
@@ -68,7 +70,7 @@ const SkillsRadarChart = () => {
     },
   };
   return (
-    <div className="w-full max-w-2xl mx-auto flex flex-col items-center">
+    <div className="w-full max-w-2xl mx-auto flex flex-col items-center" style={{ maxWidth: '90vw', width: '100%' }}>
       <div className="flex gap-4 mb-6">
         {categories.map(cat => (
           <button
@@ -80,7 +82,7 @@ const SkillsRadarChart = () => {
           </button>
         ))}
       </div>
-      <Radar data={data} options={options} style={{ maxHeight: 400 }} />
+      <Radar data={data} options={options} style={{ maxHeight: 400, maxWidth: '100%' }} />
     </div>
   );
 };

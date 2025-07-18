@@ -8,6 +8,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Sans', 'Inter', 'Montserrat', 'Poppins', sans-serif;
+}
+
 /* Custom glowing cursor */
 #wand-cursor {
   position: fixed;
@@ -48,5 +52,11 @@ body {
   #wand-cursor,
   #wand-cursor-trail {
     display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  html, body {
+    font-size: 11px;
   }
 }

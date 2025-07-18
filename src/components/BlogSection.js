@@ -66,8 +66,58 @@ const BlogSection = () => {
   }, []);
 
   return (
-    <section id="blog" className="py-16 px-4 md:px-0 max-w-4xl mx-auto">
-      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Blog</h2>
+    <section id="blog" className="py-16 px-4 md:px-0 max-w-4xl mx-auto relative overflow-visible">
+      {/* Glowy horizontal squiggly lines behind content */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+        {[...Array(8)].map((_, idx) => (
+          <svg
+            key={`h-${idx}`}
+            className="absolute left-0 w-full h-8"
+            style={{
+              top: `${10 + idx * 12}%`,
+              filter: 'drop-shadow(0 0 12px #fff) drop-shadow(0 0 6px #fff)',
+              opacity: 0.13 + 0.09 * Math.abs(Math.sin(idx)),
+            }}
+            viewBox="0 0 1200 32"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M0 16 Q150 0 300 16 Q450 32 600 16 Q750 0 900 16 Q1050 32 1200 16"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              opacity="1"
+            />
+          </svg>
+        ))}
+        {/* Glowy vertical squiggly lines behind content */}
+        {[...Array(6)].map((_, idx) => (
+          <svg
+            key={`v-${idx}`}
+            className="absolute top-0 h-full w-8"
+            style={{
+              left: `${10 + idx * 15}%`,
+              filter: 'drop-shadow(0 0 12px #fff) drop-shadow(0 0 6px #fff)',
+              opacity: 0.13 + 0.09 * Math.abs(Math.cos(idx)),
+            }}
+            viewBox="0 0 32 800"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M16 0 Q24 40 16 80 Q8 120 16 160 Q24 200 16 240 Q8 280 16 320 Q24 360 16 400 Q8 440 16 480 Q24 520 16 560 Q8 600 16 640 Q24 680 16 720 Q8 760 16 800"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              opacity="1"
+            />
+          </svg>
+        ))}
+      </div>
+      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center" style={{textShadow: '0 2px 8px rgba(0,224,255,0.12)'}}>Blog</h2>
       {loading && <div className="text-center text-gray-400">Loading latest posts…</div>}
       {error && <div className="text-center text-yellow-400">{error}</div>}
       <div className="space-y-8">

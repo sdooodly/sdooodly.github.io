@@ -19,14 +19,15 @@ export const skills = {
   ],
   'DevOps': [
     { name: 'Azure DevOps', level: 8 },
-    { name: 'GitHub Actions', level: 9 },
+    { name: 'Gh actions', level: 9 },
     { name: 'YAML', level: 7 },
-    { name: 'PowerShell', level: 8 }
+    { name: 'PowerShell', level: 8 },
+    { name: 'GitLab', level: 8 },
+    { name: 'Git', level: 9 }
   ],
   'Tools': [
-    { name: 'Git', level: 9 },
     { name: 'JIRA API', level: 6 },
-    { name: 'RESTful APIs', level: 8 },
+    { name: 'RESTful', level: 8 },
     { name: 'Jest', level: 7 },
     { name: 'Cypress', level: 6 },
     { name: 'IIS', level: 7 }
