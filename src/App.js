@@ -31,10 +31,10 @@ const sectionBgs = [
 const App = () => {
   const sections = [
     <HeroSection key="hero" />, 
-    <SkillsSection key="skills" />, 
-    <ProjectsSection key="projects" />, 
+    <SkillsSection key="skills" />,
     <RoadmapSection key="roadmap" />,
     <BlogSection key="blog" />, 
+    <ProjectsSection key="projects" />, 
     <ContactSection key="contact" />
   ];
   return (

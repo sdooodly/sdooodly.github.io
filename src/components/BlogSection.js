@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import DOMPurify from 'dompurify';
 
 const MediumIcon = ({ className }) => (
   <svg
@@ -37,6 +39,27 @@ const FALLBACK_POSTS = [
     description: 'Exploring the benefits of minimal design in developer portfolios and projects.',
   },
 ];
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, scale: 0.98 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      delay: i * 0.12,
+      duration: 0.7,
+      ease: [0.33, 1, 0.68, 1],
+    },
+  }),
+};
+
+// Utility to remove <img> and <figure> tags from HTML string
+function stripImages(html) {
+  if (!html) return '';
+  // Remove <img> and <figure> tags (and their content)
+  return html.replace(/<figure[\s\S]*?<\/figure>/gi, '').replace(/<img[^>]*>/gi, '');
+}
 
 const BlogSection = () => {
   const [posts, setPosts] = useState([]);
@@ -121,21 +144,39 @@ const BlogSection = () => {
       {loading && <div className="text-center text-gray-400">Loading latest posts…</div>}
       {error && <div className="text-center text-yellow-400">{error}</div>}
       <div className="space-y-10 md:space-y-12">
-        {posts.map((post) => (
-          <div
+        {posts.map((post, i) => (
+          <motion.div
             key={post.link || post.guid}
-            className="bg-white/10 dark:bg-black/30 rounded-xl shadow-lg p-6 md:p-10 transition hover:scale-[1.02] hover:bg-white/20 dark:hover:bg-black/40 backdrop-blur-md border border-white/20"
+            className="relative group bg-white/10 dark:bg-black/30 rounded-2xl shadow-2xl p-6 md:p-10 border border-white/20 backdrop-blur-lg transition-all duration-300 overflow-hidden"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={cardVariants}
+            custom={i}
+            whileHover={{ scale: 1.025 }}
+            style={{
+              boxShadow: '0 4px 32px 0 rgba(0,224,255,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.10)',
+            }}
           >
+            <div className="absolute inset-0 pointer-events-none rounded-2xl border-2 border-transparent group-hover:border-accent2 group-hover:shadow-[0_0_24px_4px_rgba(0,224,255,0.25)] transition-all duration-300" />
             <a
               href={post.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center"
+              className="flex items-center gap-3 z-10 relative"
             >
-              <MediumIcon className="w-6 h-6 mr-2 opacity-80" />
+              <MediumIcon className="w-7 h-7 mr-2 opacity-80" />
               <span className="text-lg md:text-xl font-semibold truncate" title={post.title}>{post.title}</span>
             </a>
-          </div>
+            {post.pubDate && (
+              <div className="mt-2 text-xs text-accent2/80 font-mono">
+                {new Date(post.pubDate).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
+              </div>
+            )}
+            {post.description && (
+              <div className="mt-4 text-sm text-white/90 dark:text-white/80 line-clamp-4" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(stripImages(post.description)) }} />
+            )}
+          </motion.div>
         ))}
       </div>
     </section>
