@@ -35,8 +35,8 @@ const navLinks = [
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <nav className="py-0.5 px-3 shadow-neon fixed top-0 w-full z-50 border-b border-accent2 bg-black/50 backdrop-blur-md">
-      <div className="container mx-auto flex justify-between items-center flex-wrap relative">
+    <nav className="py-2 px-4 shadow-neon fixed top-0 w-full z-50 border-b border-accent2 bg-black/60 backdrop-blur-md">
+      <div className="max-w-6xl mx-auto flex justify-between items-center flex-wrap relative">
         <a href="#home" className="font-bold bg-gradient-to-r from-accent to-accent2 text-transparent bg-clip-text rounded-lg p-1 hover:text-accent2 transition-colors drop-shadow-[0_2px_16px_#00E0FF] text-lg md:text-2xl md:block hidden">
           Sdooodly
         </a>
@@ -44,13 +44,13 @@ const Navbar = () => {
           Sdooodly
         </a>
         {/* Desktop nav */}
-        <div className="hidden md:flex flex-nowrap space-x-2 md:space-x-4 items-center overflow-x-auto">
+        <div className="hidden md:flex flex-nowrap space-x-4 lg:space-x-8 items-center overflow-x-auto">
           {navLinks.map(link => (
-            <a key={link.href} href={link.href} className="text-accent2 hover:text-accent px-2 py-1 rounded-md text-sm font-medium transition-colors">
+            <a key={link.href} href={link.href} className="text-accent2 hover:text-accent px-3 py-2 rounded-md text-base font-medium transition-colors">
               {link.label}
             </a>
           ))}
-          <a href="#contact" className="text-accent2 hover:text-accent px-2 py-1 rounded-md text-sm font-medium transition-colors">Contact</a>
+          <a href="#contact" className="text-accent2 hover:text-accent px-3 py-2 rounded-md text-base font-medium transition-colors">Contact</a>
         </div>
         {/* Hamburger for mobile and Contact button */}
         <div className="flex items-center md:hidden">
@@ -78,7 +78,7 @@ const Navbar = () => {
                   <a
                     key={link.href}
                     href={link.href}
-                    className="text-white hover:text-accent px-4 py-2 rounded-md text-base font-medium transition-colors w-full text-center"
+                    className="text-white hover:text-accent px-4 py-3 rounded-md text-lg font-medium transition-colors w-full text-center"
                     onClick={() => setMenuOpen(false)}
                   >
                     {link.label}

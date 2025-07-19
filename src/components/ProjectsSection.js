@@ -136,11 +136,11 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" className="py-16 md:py-24 relative overflow-visible">
-      <div className="relative z-10 bg-glass/80 backdrop-blur-glass shadow-2xl rounded-3xl p-6 md:p-16 overflow-hidden">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-14 text-text/90 font-inter" style={{textShadow: '0 2px 8px rgba(0,224,255,0.12)'}}>Projects</h2>
+    <section id="projects" className="py-20 md:py-32 relative overflow-visible">
+      <div className="max-w-6xl mx-auto relative z-10 bg-glass/80 backdrop-blur-glass shadow-2xl rounded-3xl p-6 md:p-16 lg:p-24 overflow-hidden">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-16 text-text/90 font-inter" style={{textShadow: '0 2px 8px rgba(0,224,255,0.12)'}}>Projects</h2>
         <div
-          className="flex items-center justify-center gap-4 mb-8 select-none"
+          className="flex items-center justify-center gap-4 mb-10 select-none"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >

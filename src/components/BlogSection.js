@@ -66,7 +66,7 @@ const BlogSection = () => {
   }, []);
 
   return (
-    <section id="blog" className="py-16 px-4 md:px-0 max-w-4xl mx-auto relative overflow-visible">
+    <section id="blog" className="py-20 md:py-32 px-4 md:px-0 max-w-4xl mx-auto relative overflow-visible">
       {/* Glowy horizontal squiggly lines behind content */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
         {[...Array(8)].map((_, idx) => (
@@ -117,14 +117,14 @@ const BlogSection = () => {
           </svg>
         ))}
       </div>
-      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center" style={{textShadow: '0 2px 8px rgba(0,224,255,0.12)'}}>Blog</h2>
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-14 md:mb-16 text-center" style={{textShadow: '0 2px 8px rgba(0,224,255,0.12)'}}>Blog</h2>
       {loading && <div className="text-center text-gray-400">Loading latest posts…</div>}
       {error && <div className="text-center text-yellow-400">{error}</div>}
-      <div className="space-y-8">
+      <div className="space-y-10 md:space-y-12">
         {posts.map((post) => (
           <div
             key={post.link || post.guid}
-            className="bg-white/10 dark:bg-black/30 rounded-xl shadow-lg p-6 transition hover:scale-[1.02] hover:bg-white/20 dark:hover:bg-black/40 backdrop-blur-md border border-white/20"
+            className="bg-white/10 dark:bg-black/30 rounded-xl shadow-lg p-6 md:p-10 transition hover:scale-[1.02] hover:bg-white/20 dark:hover:bg-black/40 backdrop-blur-md border border-white/20"
           >
             <a
               href={post.link}
@@ -133,7 +133,7 @@ const BlogSection = () => {
               className="flex items-center"
             >
               <MediumIcon className="w-6 h-6 mr-2 opacity-80" />
-              <span className="text-lg font-semibold truncate" title={post.title}>{post.title}</span>
+              <span className="text-lg md:text-xl font-semibold truncate" title={post.title}>{post.title}</span>
             </a>
           </div>
         ))}

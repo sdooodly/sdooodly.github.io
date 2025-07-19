@@ -4,7 +4,7 @@ import { socialLinks } from '../constants/socialLinks';
 const HeroSection = () => {
   const [circleHover, setCircleHover] = useState(false);
   return (
-    <section id="about" className="container mx-auto px-4 py-20 text-center md:py-32 relative overflow-visible">
+    <section id="about" className="max-w-4xl lg:max-w-6xl mx-auto px-4 py-24 md:py-36 text-center md:text-left relative overflow-visible">
       {/* Glowy horizontal squiggly lines behind content */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
         {[...Array(8)].map((_, idx) => (
@@ -31,8 +31,8 @@ const HeroSection = () => {
           </svg>
         ))}
       </div>
-      <div className="relative z-10 bg-glass/80 backdrop-blur-glass border border-accent2 shadow-lg rounded-3xl p-10 md:p-20 flex flex-col md:flex-row items-center justify-center gap-8">
-        <div className="relative w-32 h-32 md:w-48 md:h-48 flex items-center justify-center">
+      <div className="relative z-10 bg-glass/80 backdrop-blur-glass border border-accent2 shadow-lg rounded-3xl p-8 md:p-16 lg:p-24 flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
+        <div className="relative w-32 h-32 md:w-48 md:h-48 flex items-center justify-center mb-8 md:mb-0">
           {/* Glowy concentric circles under profile image */}
           <svg
             className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-all duration-500 ${circleHover ? 'scale-110' : 'scale-100'} hidden md:block`}
@@ -70,10 +70,10 @@ const HeroSection = () => {
           </div>
         </div>
         <div className="text-center md:text-left max-w-2xl">
-          <h1 className="text-4xl md:text-5xl font-semibold md:font-extrabold mb-6 leading-tight tracking-tight text-text/90 font-inter">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold md:font-extrabold mb-8 leading-tight tracking-tight text-text/90 font-inter">
             Hi, I'm <span>Sdooodly</span>
           </h1>
-          <p className="text-lg md:text-xl text-text/80 mb-10 leading-relaxed font-inter">
+          <p className="text-lg md:text-xl lg:text-2xl text-text/80 mb-12 leading-relaxed font-inter">
           From structural blueprints to architecting digital foundations on Linux, I like to build things that work. I'm obsessed with elegant system design, flowcharts that sing, and seamless integration!
           </p>
           {/* Social icons removed */}
