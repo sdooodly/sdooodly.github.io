@@ -7,6 +7,7 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import RoadmapSection from './components/RoadmapSection';
 import BlogSection from './components/BlogSection';
+import GoodreadsSection from './components/GoodreadsSection';
 import { motion } from 'framer-motion';
 
 const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 640px)').matches;
@@ -31,10 +32,11 @@ const sectionBgs = [
 const App = () => {
   const sections = [
     <HeroSection key="hero" />, 
-    <SkillsSection key="skills" />,
+    <SkillsSection key="skills" />, 
+    <ProjectsSection key="projects" />, 
     <RoadmapSection key="roadmap" />,
     <BlogSection key="blog" />, 
-    <ProjectsSection key="projects" />, 
+    <GoodreadsSection key="goodreads" />, 
     <ContactSection key="contact" />
   ];
   return (

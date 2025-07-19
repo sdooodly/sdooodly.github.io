@@ -29,6 +29,7 @@ const navLinks = [
   { href: '#skills', label: 'Skills' },
   { href: '#projects', label: 'Projects' },
   { href: '#roadmap', label: 'Roadmap' },
+  { href: '#goodreads', label: 'Goodreads' },
   { href: '#blog', label: 'Blog' },
 ];
 

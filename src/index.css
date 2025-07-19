@@ -48,6 +48,14 @@ body, h1, h2, h3, h4, h5, h6 {
   will-change: transform;
 }
 
+.bookshelf-scroll::-webkit-scrollbar {
+  display: none;
+}
+.bookshelf-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @media (pointer: coarse) {
   #wand-cursor,
   #wand-cursor-trail {
