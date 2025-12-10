@@ -1,6 +1,6 @@
 # Sdooodly Portfolio
 
-This project uses a Spotify-style background image from Unsplash for a premium look.
+This project uses a Spotify-style background image from Unsplash.
 
 ## Unsplash Image Credit
 
