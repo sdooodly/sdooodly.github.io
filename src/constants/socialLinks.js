@@ -1,7 +1,7 @@
 export const socialLinks = [
   {
     name: 'Email',
-    url: 'mailto:gayathrigs96@gmail.com',
+    url: 'mailto:gayathrigs@outlook.com',
     icon: 'M3 8l7.89 5.26c.49.33 1.11.33 1.6 0L21 8M3 4h18a2 2 0 012 2v12a2 2 0 01-2 2H3a2 2 0 01-2-2V6a2 2 0 012-2z',
   },
   {

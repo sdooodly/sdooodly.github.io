@@ -42,6 +42,22 @@ const SkillIcon = memo(({ icon }) => {
 
 SkillIcon.displayName = 'SkillIcon';
 
+const ProficiencyBadge = memo(({ proficiency }) => {
+  const colors = {
+    'Expert': 'bg-accent/30 text-accent border-accent/50',
+    'Advanced': 'bg-accent2/30 text-accent2 border-accent2/50',
+    'Intermediate': 'bg-accent3/30 text-accent3 border-accent3/50'
+  };
+
+  return (
+    <span className={`inline-block px-2 py-1 text-xs font-semibold rounded border ${colors[proficiency] || colors.Intermediate}`}>
+      {proficiency}
+    </span>
+  );
+});
+
+ProficiencyBadge.displayName = 'ProficiencyBadge';
+
 const SkillsSection = () => {
   const [openIdx, setOpenIdx] = useState(null);
   const categories = Object.entries(skills);
@@ -84,16 +100,20 @@ const SkillsSection = () => {
                 {openIdx === idx && (
                   <ul className="list-disc list-inside text-base md:text-lg text-accent2/90 space-y-3">
                     {items.map((item, index) => (
-                      <li key={index} className="flex items-center">
+                      <li key={index} className="flex items-center justify-between hover-lift">
                         <a
                           href={item.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center hover:underline hover:text-accent2 transition-colors"
+                          className="flex items-center hover:underline hover:text-accent2 transition-colors flex-grow"
                         >
                           <SkillIcon icon={item.icon} />
-                          {item.name}
+                          <span>{item.name}</span>
                         </a>
+                        <div className="flex items-center gap-2 ml-4">
+                          <span className="text-sm text-text/60 whitespace-nowrap">{item.years}</span>
+                          <ProficiencyBadge proficiency={item.proficiency} />
+                        </div>
                       </li>
                     ))}
                   </ul>

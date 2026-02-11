@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import ScrollProgressBar from './components/ScrollProgressBar';
 import BreadcrumbNavigation from './components/BreadcrumbNavigation';
+import TerminalInterface from './components/TerminalInterface';
 import { motion } from 'framer-motion';
 import { useIsMobile } from './hooks/useMediaQuery';
 import { useActiveSection } from './hooks/useActiveSection';
@@ -65,7 +66,7 @@ const App = () => {
     ...(activeSection !== 'home' ? [{ label: sectionLabels[activeSection], href: null }] : [])
   ];
   return (
-    <div className={`min-h-screen text-text font-inter overflow-x-hidden`}>
+    <div className={`min-h-screen text-text font-inter overflow-x-hidden pb-20`}>
       <div
         className="fixed inset-0 w-full h-full -z-10 pointer-events-none"
         style={{
@@ -134,6 +135,7 @@ const App = () => {
       <Suspense fallback={null}>
         <Footer />
       </Suspense>
+      <TerminalInterface />
     </div>
   );
 };
