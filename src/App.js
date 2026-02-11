@@ -66,7 +66,7 @@ const App = () => {
     ...(activeSection !== 'home' ? [{ label: sectionLabels[activeSection], href: null }] : [])
   ];
   return (
-    <div className={`min-h-screen text-text font-inter overflow-x-hidden pb-20`}>
+    <div className={`min-h-screen text-text font-inter overflow-x-hidden pb-40`}>
       <div
         className="fixed inset-0 w-full h-full -z-10 pointer-events-none"
         style={{

@@ -104,17 +104,17 @@ const TerminalInterface = memo(() => {
   };
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-br from-black via-gray-950 to-black border-t-2 border-green-500/50 h-20">
+    <footer className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-br from-black via-gray-950 to-black border-t-2 border-green-500/50 h-40">
       <div 
-        className="bg-black/30 px-4 py-1.5 border-b border-green-500/30 flex items-center gap-2 h-7"
+        className="bg-black/30 px-6 py-2 border-b border-green-500/30 flex items-center gap-3 h-10"
         style={{boxShadow: '0 0 20px rgba(34, 197, 94, 0.15), inset 0 0 20px rgba(34, 197, 94, 0.05)'}}
       >
-        <span className="text-xs text-green-500/70">sdoooterminal</span>
+        <span className="text-sm text-green-500/70 font-semibold">sdoooterminal</span>
       </div>
       
       <div 
         ref={scrollRef}
-        className="overflow-y-auto p-2 space-y-0.5 font-mono text-xs bg-black/50 h-12"
+        className="overflow-y-auto p-4 space-y-1 font-mono text-sm bg-black/50 h-20"
         style={{textShadow: '0 0 10px rgba(34, 197, 94, 0.3)'}}
       >
         {lines.slice(-2).map((line, idx) => (
@@ -133,18 +133,18 @@ const TerminalInterface = memo(() => {
         ))}
       </div>
 
-      <div className="bg-black/30 border-t border-green-500/30 px-3 py-1 flex items-center gap-1.5 h-6 w-full">
-        <span className="text-cyan-400 font-bold text-xs flex-shrink-0">▶</span>
+      <div className="bg-black/30 border-t border-green-500/30 px-6 py-3 flex items-center gap-2 h-12">
+        <span className="text-cyan-400 font-bold text-lg flex-shrink-0">▶</span>
         <input
           ref={inputRef}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="flex-1 bg-transparent outline-none text-green-400 placeholder:text-green-600/40 font-mono text-xs min-w-0"
-          placeholder="Type 'help'..."
+          className="flex-1 bg-transparent outline-none text-green-400 placeholder:text-green-600/40 font-mono text-base min-w-0"
+          placeholder="Type 'help' to see commands..."
           spellCheck="false"
         />
-        {input && <span className="text-green-500/50 animate-pulse text-xs flex-shrink-0">▌</span>}
+        {input && <span className="text-green-500/50 animate-pulse text-base flex-shrink-0">▌</span>}
       </div>
     </footer>
   );
