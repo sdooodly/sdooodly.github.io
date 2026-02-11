@@ -1,8 +1,11 @@
-import React, { lazy, Suspense, useMemo } from 'react';
+import React, { lazy, Suspense, useMemo, useState } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
+import ScrollProgressBar from './components/ScrollProgressBar';
+import BreadcrumbNavigation from './components/BreadcrumbNavigation';
 import { motion } from 'framer-motion';
 import { useIsMobile } from './hooks/useMediaQuery';
+import { useActiveSection } from './hooks/useActiveSection';
 
 const ProjectsSection = lazy(() => import('./components/ProjectsSection'));
 const SkillsSection = lazy(() => import('./components/SkillsSection'));
@@ -42,6 +45,25 @@ const App = () => {
     { Component: GoodreadsSection, key: 'goodreads' },
     { Component: ContactSection, key: 'contact' }
   ], []);
+
+  const sectionIds = ['about', 'skills', 'projects', 'roadmap', 'blog', 'goodreads', 'contact'];
+  const activeSection = useActiveSection(sectionIds);
+
+  const sectionLabels = {
+    'home': 'Home',
+    'about': 'About',
+    'skills': 'Skills',
+    'projects': 'Projects',
+    'roadmap': 'Roadmap',
+    'blog': 'Blog',
+    'goodreads': 'Goodreads',
+    'contact': 'Contact'
+  };
+
+  const breadcrumbItems = [
+    { label: sectionLabels['home'], href: '#home' },
+    ...(activeSection !== 'home' ? [{ label: sectionLabels[activeSection], href: null }] : [])
+  ];
   return (
     <div className={`min-h-screen text-text font-inter overflow-x-hidden`}>
       <div
@@ -56,7 +78,9 @@ const App = () => {
       >
         <div className="absolute inset-0 bg-black/40" />
       </div>
+      <ScrollProgressBar />
       <Navbar />
+      <BreadcrumbNavigation items={breadcrumbItems} />
       <div className="space-y-12 md:space-y-16 pt-20">
         {sections.map(({ Component, key }, idx) => {
           if (isMobile) {

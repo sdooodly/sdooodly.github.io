@@ -28,19 +28,6 @@
     <!-- Tailwind CSS CDN - for quick setup, replace with proper build process later -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      // Set up CSS variables for dark and light mode
-      document.addEventListener('DOMContentLoaded', function() {
-        const setThemeVars = (theme) => {
-          if (theme === 'light') {
-            document.documentElement.classList.add('light');
-          } else {
-            document.documentElement.classList.remove('light');
-          }
-        };
-        // Optionally, set theme from localStorage
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme) setThemeVars(savedTheme);
-      });
       tailwind.config = {
         theme: {
           extend: {
