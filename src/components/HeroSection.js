@@ -1,20 +1,82 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, memo } from 'react';
 import { socialLinks } from '../constants/socialLinks';
+
+const SVG_LINES = Array.from({ length: 8 }, (_, idx) => ({
+  idx,
+  top: `${10 + idx * 12}%`,
+  opacity: 0.13 + 0.09 * Math.abs(Math.sin(idx)),
+}));
+
+const CircleSVG = memo(({ isMobile, isHovered, onMouseEnter, onMouseLeave }) => {
+  const isDesktop = !isMobile;
+  const size = isDesktop ? 220 : 120;
+  const center = size / 2;
+  
+  const circleData = isDesktop
+    ? [
+        { r: 100, sw: 3, opacity: 0.28 },
+        { r: 70, sw: 2.5, opacity: 0.32 },
+        { r: 40, sw: 2, opacity: 0.38 },
+      ]
+    : [
+        { r: 52, sw: 2.2, opacity: 0.28 },
+        { r: 36, sw: 1.7, opacity: 0.32 },
+        { r: 20, sw: 1.2, opacity: 0.38 },
+      ];
+
+  return (
+    <svg
+      className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-all duration-500 ${
+        isHovered ? 'scale-110' : 'scale-100'
+      }`}
+      width={size}
+      height={size}
+      viewBox={`0 0 ${size} ${size}`}
+      style={{
+        zIndex: 1,
+        filter: isHovered
+          ? `drop-shadow(0 0 ${isDesktop ? 48 : 24}px #fff) drop-shadow(0 0 ${isDesktop ? 24 : 12}px #fff)`
+          : `drop-shadow(0 0 ${isDesktop ? 24 : 12}px #fff8)`,
+      }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      aria-hidden="true"
+    >
+      {circleData.map((circle, i) => (
+        <circle
+          key={i}
+          cx={center}
+          cy={center}
+          r={circle.r}
+          stroke="white"
+          strokeWidth={circle.sw}
+          opacity={circle.opacity}
+          fill="none"
+        />
+      ))}
+      <circle cx={center} cy={center} r={isDesktop ? 16 : 8} fill="white" opacity="0.18" />
+    </svg>
+  );
+});
+
+CircleSVG.displayName = 'CircleSVG';
 
 const HeroSection = () => {
   const [circleHover, setCircleHover] = useState(false);
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  
   return (
     <section id="about" className="max-w-4xl lg:max-w-6xl mx-auto px-4 py-24 md:py-36 text-center md:text-left relative overflow-visible">
       {/* Glowy horizontal squiggly lines behind content */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-        {[...Array(8)].map((_, idx) => (
+        {SVG_LINES.map(({ idx, top, opacity }) => (
           <svg
             key={idx}
             className="absolute left-0 w-full h-8"
             style={{
-              top: `${10 + idx * 12}%`,
+              top,
               filter: 'drop-shadow(0 0 12px #fff) drop-shadow(0 0 6px #fff)',
-              opacity: 0.13 + 0.09 * Math.abs(Math.sin(idx)),
+              opacity,
             }}
             viewBox="0 0 1200 32"
             fill="none"
@@ -34,33 +96,12 @@ const HeroSection = () => {
       <div className="relative z-10 bg-glass/80 backdrop-blur-glass border border-accent2 shadow-lg rounded-3xl p-8 md:p-16 lg:p-24 flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
         <div className="relative w-32 h-32 md:w-48 md:h-48 flex items-center justify-center mb-8 md:mb-0">
           {/* Glowy concentric circles under profile image */}
-          <svg
-            className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-all duration-500 ${circleHover ? 'scale-110' : 'scale-100'} hidden md:block`}
-            width="220" height="220" viewBox="0 0 220 220"
-            style={{ zIndex: 1, filter: circleHover ? 'drop-shadow(0 0 48px #fff) drop-shadow(0 0 24px #fff)' : 'drop-shadow(0 0 24px #fff8)' }}
+          <CircleSVG 
+            isMobile={isMobile}
+            isHovered={circleHover}
             onMouseEnter={() => setCircleHover(true)}
             onMouseLeave={() => setCircleHover(false)}
-            aria-hidden="true"
-          >
-            <circle cx="110" cy="110" r="100" stroke="white" strokeWidth="3" opacity="0.28" />
-            <circle cx="110" cy="110" r="70" stroke="white" strokeWidth="2.5" opacity="0.32" />
-            <circle cx="110" cy="110" r="40" stroke="white" strokeWidth="2" opacity="0.38" />
-            <circle cx="110" cy="110" r="16" fill="white" opacity="0.18" />
-          </svg>
-          {/* Smaller circle for mobile */}
-          <svg
-            className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-all duration-500 ${circleHover ? 'scale-110' : 'scale-100'} md:hidden`}
-            width="120" height="120" viewBox="0 0 120 120"
-            style={{ zIndex: 1, filter: circleHover ? 'drop-shadow(0 0 24px #fff) drop-shadow(0 0 12px #fff)' : 'drop-shadow(0 0 12px #fff8)' }}
-            onMouseEnter={() => setCircleHover(true)}
-            onMouseLeave={() => setCircleHover(false)}
-            aria-hidden="true"
-          >
-            <circle cx="60" cy="60" r="52" stroke="white" strokeWidth="2.2" opacity="0.28" />
-            <circle cx="60" cy="60" r="36" stroke="white" strokeWidth="1.7" opacity="0.32" />
-            <circle cx="60" cy="60" r="20" stroke="white" strokeWidth="1.2" opacity="0.38" />
-            <circle cx="60" cy="60" r="8" fill="white" opacity="0.18" />
-          </svg>
+          />
           <div className="w-32 h-32 md:w-48 md:h-48 bg-accent2 rounded-full overflow-hidden shadow-xl border-4 border-accent relative z-10">
             <img
               src="/assets/flower.jpg"

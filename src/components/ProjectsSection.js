@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { projects } from '../data/projects';
 
 const getVisibleCount = () => {
@@ -9,6 +9,8 @@ const getVisibleCount = () => {
   }
   return 1;
 };
+
+const PROJECT_DOTS = Array.from({ length: projects.length }, (_, i) => ({ idx: i }));
 
 const AUTOPLAY_INTERVAL = 4000;
 const SWIPE_DURATION = 600;
@@ -33,52 +35,58 @@ const ProjectsSection = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Autoplay logic
+  const handleNext = useCallback((auto = false) => {
+    setAnimating(prev => {
+      if (prev && !auto) return prev;
+      setAnimating(true);
+      setTimeout(() => {
+        setCenterIdx(idx => (idx + 1) % projects.length);
+        setAnimating(false);
+      }, SWIPE_DURATION);
+      return true;
+    });
+  }, []);
+
+  // Autoplay logic with proper dependency array
   useEffect(() => {
     if (hoverRef.current) return;
     timerRef.current = setTimeout(() => {
       handleNext(true);
     }, AUTOPLAY_INTERVAL);
     return () => clearTimeout(timerRef.current);
-    // eslint-disable-next-line
-  }, [centerIdx, visibleCount]);
+  }, [centerIdx, handleNext]);
 
-  const handlePrev = () => {
-    if (animating) return;
-    setAnimating(true);
-    setTimeout(() => {
-      setCenterIdx(idx => (idx - 1 + projects.length) % projects.length);
-      setAnimating(false);
-    }, SWIPE_DURATION);
-  };
+  const handlePrev = useCallback(() => {
+    setAnimating(prev => {
+      if (prev) return prev;
+      setAnimating(true);
+      setTimeout(() => {
+        setCenterIdx(idx => (idx - 1 + projects.length) % projects.length);
+        setAnimating(false);
+      }, SWIPE_DURATION);
+      return true;
+    });
+  }, []);
 
-  const handleNext = (auto = false) => {
-    if (animating && !auto) return;
-    setAnimating(true);
-    setTimeout(() => {
-      setCenterIdx(idx => (idx + 1) % projects.length);
-      setAnimating(false);
-    }, SWIPE_DURATION);
-  };
-
-  const handleMouseEnter = () => {
+  const handleMouseEnter = useCallback(() => {
     hoverRef.current = true;
     clearTimeout(timerRef.current);
-  };
-  const handleMouseLeave = () => {
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
     hoverRef.current = false;
     timerRef.current = setTimeout(() => {
       handleNext(true);
     }, AUTOPLAY_INTERVAL);
-  };
+  }, [handleNext]);
 
-  // Drag/Swipe handlers (only trigger next/prev, do not drag cards)
-  const handleDragStart = e => {
+  const handleDragStart = useCallback(e => {
     if (animating) return;
     dragging.current = true;
     dragStartX.current = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-  };
-  const handleDragMove = e => {
+  }, [animating]);
+
+  const handleDragMove = useCallback(e => {
     if (!dragging.current) return;
     const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
     const delta = clientX - dragStartX.current;
@@ -90,10 +98,11 @@ const ProjectsSection = () => {
         handlePrev();
       }
     }
-  };
-  const handleDragEnd = () => {
+  }, [handleNext, handlePrev]);
+
+  const handleDragEnd = useCallback(() => {
     dragging.current = false;
-  };
+  }, []);
 
   // Calculate which projects to show
   const half = Math.floor(visibleCount / 2);
@@ -103,7 +112,6 @@ const ProjectsSection = () => {
   };
   const visibleProjects = Array.from({ length: visibleCount }, (_, i) => getProjectAt(i - half));
 
-  // Animation/position classes
   const getCardStyle = idx => {
     const pos = idx - half;
     if (visibleCount === 1) {
@@ -126,7 +134,6 @@ const ProjectsSection = () => {
       window.open(visibleProjects[idx].liveLink, '_blank');
     } else if (!animating) {
       setAnimating(true);
-      // Calculate how many steps to move
       const pos = idx - half;
       setTimeout(() => {
         setCenterIdx(current => (current + pos + projects.length) % projects.length);
@@ -233,12 +240,12 @@ const ProjectsSection = () => {
             &#8594;
           </button>
         </div>
-        {/* Optionally, add dots for navigation */}
+        {}
         <div className="flex justify-center gap-2 mt-2">
-          {Array.from({ length: projects.length }).map((_, i) => (
+          {PROJECT_DOTS.map(({ idx }) => (
             <span
-              key={i}
-              className={`inline-block w-2 h-2 rounded-full ${i === centerIdx ? 'bg-accent2' : 'bg-accent3'} transition-colors`}
+              key={idx}
+              className={`inline-block w-2 h-2 rounded-full ${idx === centerIdx ? 'bg-accent2' : 'bg-accent3'} transition-colors`}
             />
         ))}
       </div>
