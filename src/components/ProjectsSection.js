@@ -3,9 +3,9 @@ import { projects } from '../data/projects';
 
 const getVisibleCount = () => {
   if (typeof window !== 'undefined') {
-    if (window.innerWidth >= 1024) return 5; // desktop
-    if (window.innerWidth >= 640) return 3; // tablet
-    return 1; // mobile
+    if (window.innerWidth >= 1024) return 5;
+    if (window.innerWidth >= 640) return 3;
+    return 1;
   }
   return 1;
 };
@@ -14,7 +14,7 @@ const PROJECT_DOTS = Array.from({ length: projects.length }, (_, i) => ({ idx: i
 
 const AUTOPLAY_INTERVAL = 4000;
 const SWIPE_DURATION = 600;
-const DRAG_THRESHOLD = 60; // px
+const DRAG_THRESHOLD = 60;
 
 const ProjectsSection = () => {
   const [centerIdx, setCenterIdx] = useState(0);
@@ -23,7 +23,6 @@ const ProjectsSection = () => {
   const timerRef = useRef(null);
   const hoverRef = useRef(false);
 
-  // Drag state
   const dragStartX = useRef(null);
   const dragging = useRef(false);
 
@@ -104,7 +103,6 @@ const ProjectsSection = () => {
     dragging.current = false;
   }, []);
 
-  // Calculate which projects to show
   const half = Math.floor(visibleCount / 2);
   const getProjectAt = offset => {
     let idx = (centerIdx + offset + projects.length) % projects.length;
@@ -128,7 +126,6 @@ const ProjectsSection = () => {
     }
   };
 
-  // Click on a card to bring it to center
   const handleCardClick = (idx, isCenter) => {
     if (isCenter) {
       window.open(visibleProjects[idx].liveLink, '_blank');
@@ -190,24 +187,19 @@ const ProjectsSection = () => {
                       backgroundImage: `url(${project.image})`,
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
-                      filter: 'brightness(1.18) contrast(1.08)', // boost brightness/contrast only, no blur
+                      filter: 'brightness(1.18) contrast(1.08)',
                     }}
                   />
-                  {/* Gradient overlays for top-bright, bottom-dark effect */}
-                  {/* 1. Subtle white-to-transparent at top for extra brightness */}
                   <div className="absolute inset-0 pointer-events-none" style={{
                     background: 'linear-gradient(to bottom, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.00) 30%)'
                   }} />
-                  {/* 2. Stronger dark gradient at bottom for text readability */}
                   <div className="absolute inset-0 pointer-events-none" style={{
                     background: 'linear-gradient(to bottom, rgba(10,10,20,0.0) 50%, rgba(10,10,20,0.97) 100%)'
                   }} />
-                  {/* Title and GitHub icon at bottom */}
                   <div
                     className={`absolute bottom-0 left-0 w-full px-6 pb-10 pt-10 flex flex-row items-center justify-center gap-3 transition-opacity duration-1000 ${isCenter ? 'opacity-100' : 'opacity-0'}`}
                     style={{ zIndex: 2 }}
                   >
-                    {/* Horizontal dark transparent bar */}
                     <div
                       className="absolute left-1/2 bottom-0 translate-x-[-50%] mb-8 w-[90%] h-14 bg-accent2/80 rounded-xl backdrop-blur-sm"
                       style={{ zIndex: 1 }}
@@ -240,7 +232,6 @@ const ProjectsSection = () => {
             &#8594;
           </button>
         </div>
-        {}
         <div className="flex justify-center gap-2 mt-2">
           {PROJECT_DOTS.map(({ idx }) => (
             <span

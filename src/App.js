@@ -4,7 +4,6 @@ import HeroSection from './components/HeroSection';
 import { motion } from 'framer-motion';
 import { useIsMobile } from './hooks/useMediaQuery';
 
-// Lazy load heavy sections for better performance
 const ProjectsSection = lazy(() => import('./components/ProjectsSection'));
 const SkillsSection = lazy(() => import('./components/SkillsSection'));
 const ContactSection = lazy(() => import('./components/ContactSection'));
@@ -14,11 +13,11 @@ const BlogSection = lazy(() => import('./components/BlogSection'));
 const GoodreadsSection = lazy(() => import('./components/GoodreadsSection'));
 
 const SECTION_BG_CLASSES = [
-  'bg-gradient-to-b from-background/80 to-accent2/10', // Hero
-  'bg-gradient-to-b from-accent2/10 to-background/80', // Projects
-  'bg-gradient-to-b from-background/80 to-accent3/10', // Skills
-  'bg-gradient-to-b from-accent3/10 to-background/80', // Roadmap
-  'bg-gradient-to-b from-background/80 to-accent/10', // Contact
+  'bg-gradient-to-b from-background/80 to-accent2/10',
+  'bg-gradient-to-b from-accent2/10 to-background/80',
+  'bg-gradient-to-b from-background/80 to-accent3/10',
+  'bg-gradient-to-b from-accent3/10 to-background/80',
+  'bg-gradient-to-b from-background/80 to-accent/10',
 ];
 
 const App = () => {
@@ -45,7 +44,6 @@ const App = () => {
   ], []);
   return (
     <div className={`min-h-screen text-text font-inter overflow-x-hidden`}>
-      {/* Unsplash flower fixed background with dark overlay */}
       <div
         className="fixed inset-0 w-full h-full -z-10 pointer-events-none"
         style={{
@@ -86,7 +84,6 @@ const App = () => {
               );
             }
           } else {
-            
             return (
               <motion.section
                 key={key}
@@ -96,7 +93,6 @@ const App = () => {
                 variants={sectionVariants}
                 className="relative"
               >
-                {/* Subtle animated background layer */}
                 <motion.div
                   className={`absolute inset-0 -z-10 pointer-events-none transition-colors duration-1000 ${SECTION_BG_CLASSES[idx] || ''}`}
                   variants={bgVariants}

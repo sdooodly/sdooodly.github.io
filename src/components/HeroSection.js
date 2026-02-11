@@ -67,7 +67,6 @@ const HeroSection = () => {
   
   return (
     <section id="about" className="max-w-4xl lg:max-w-6xl mx-auto px-4 py-24 md:py-36 text-center md:text-left relative overflow-visible">
-      {/* Glowy horizontal squiggly lines behind content */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
         {SVG_LINES.map(({ idx, top, opacity }) => (
           <svg
@@ -95,7 +94,6 @@ const HeroSection = () => {
       </div>
       <div className="relative z-10 bg-glass/80 backdrop-blur-glass border border-accent2 shadow-lg rounded-3xl p-8 md:p-16 lg:p-24 flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
         <div className="relative w-32 h-32 md:w-48 md:h-48 flex items-center justify-center mb-8 md:mb-0">
-          {/* Glowy concentric circles under profile image */}
           <CircleSVG 
             isMobile={isMobile}
             isHovered={circleHover}
