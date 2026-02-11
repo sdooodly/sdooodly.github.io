@@ -11,7 +11,7 @@ const COMMAND_OUTPUTS = {
   'last-updated': 'Last updated: February 11, 2026\nThe tower has spoken. New powers unlocked.',
   'easter egg': 'YOU SHALL NOT PASS! (without reading the code first)',
   'fly you fools': 'One does not simply... debug production.',
-  'my precious': 'Git commit -m "My Precious" // NEVER FORCE PUSH',
+  'my precious': 'Git commit -m "My Precious"',
   'one ring': 'One Ring to rule them all, One Ring to find them all...\nBut in the land of Code: One Function to rule them all! 🔮',
 };
 
@@ -28,6 +28,7 @@ const LOTR_GREETINGS = [
 
 
 const TerminalInterface = memo(() => {
+  const [isExpanded, setIsExpanded] = useState(false);
   const [lines, setLines] = useState([
     { type: 'welcome', text: LOTR_GREETINGS[Math.floor(Math.random() * LOTR_GREETINGS.length)] },
   ]);
@@ -42,6 +43,12 @@ const TerminalInterface = memo(() => {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [lines]);
+
+  useEffect(() => {
+    if (isExpanded && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isExpanded]);
 
   const executeCommand = (cmd) => {
     const trimmedCmd = cmd.trim().toLowerCase();
@@ -104,49 +111,79 @@ const TerminalInterface = memo(() => {
   };
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-br from-black via-gray-950 to-black border-t-2 border-green-500/50 h-40">
-      <div 
-        className="bg-black/30 px-6 py-2 border-b border-green-500/30 flex items-center gap-3 h-10"
-        style={{boxShadow: '0 0 20px rgba(34, 197, 94, 0.15), inset 0 0 20px rgba(34, 197, 94, 0.05)'}}
+    <>
+      <footer 
+        id="terminal"
+        className={`fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-br from-black via-gray-950 to-black border-t-2 border-green-500/50 transition-all duration-300 ${
+          isExpanded ? 'h-[500px]' : 'h-12 cursor-pointer hover:border-green-400/70'
+        }`}
+        onClick={() => !isExpanded && setIsExpanded(true)}
       >
-        <span className="text-sm text-green-500/70 font-semibold">sdoooterminal</span>
-      </div>
-      
-      <div 
-        ref={scrollRef}
-        className="overflow-y-auto p-4 space-y-1 font-mono text-sm bg-black/50 h-20"
-        style={{textShadow: '0 0 10px rgba(34, 197, 94, 0.3)'}}
-      >
-        {lines.slice(-2).map((line, idx) => (
-          <div 
-            key={idx}
-            className={`${
-              line.type === 'welcome' ? 'text-green-500/80 font-semibold' :
-              line.type === 'input' ? 'text-cyan-400 font-bold' :
-              line.type === 'error' ? 'text-red-400' :
-              line.type === 'blank' ? '' :
-              'text-green-400'
-            }`}
-          >
-            {line.text}
+        <div 
+          className="bg-black/30 px-6 py-2 border-b border-green-500/30 flex items-center justify-between h-12"
+          style={{boxShadow: '0 0 20px rgba(34, 197, 94, 0.15), inset 0 0 20px rgba(34, 197, 94, 0.05)'}}
+        >
+          <div className="flex items-center gap-3">
+            <span className="text-sm text-green-500/70 font-semibold">sdoooterminal</span>
+            <span className="text-xs text-green-600/50">Last updated: Feb 11, 2026</span>
           </div>
-        ))}
-      </div>
+          {isExpanded && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsExpanded(false);
+              }}
+              className="text-green-500/70 hover:text-red-400 transition-colors text-xl font-bold px-2"
+              aria-label="Close terminal"
+            >
+              ×
+            </button>
+          )}
+        </div>
+        
+        {isExpanded && (
+          <>
+            <div 
+              ref={scrollRef}
+              className="overflow-y-auto p-4 space-y-1 font-mono text-sm bg-black/50"
+              style={{
+                textShadow: '0 0 10px rgba(34, 197, 94, 0.3)',
+                height: 'calc(100% - 96px)'
+              }}
+            >
+              {lines.map((line, idx) => (
+                <div 
+                  key={idx}
+                  className={`${
+                    line.type === 'welcome' ? 'text-green-500/80 font-semibold' :
+                    line.type === 'input' ? 'text-cyan-400 font-bold' :
+                    line.type === 'error' ? 'text-red-400' :
+                    line.type === 'blank' ? '' :
+                    'text-green-400'
+                  }`}
+                >
+                  {line.text}
+                </div>
+              ))}
+            </div>
 
-      <div className="bg-black/30 border-t border-green-500/30 px-6 py-3 flex items-center gap-2 h-12">
-        <span className="text-cyan-400 font-bold text-lg flex-shrink-0">▶</span>
-        <input
-          ref={inputRef}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="flex-1 bg-transparent outline-none text-green-400 placeholder:text-green-600/40 font-mono text-base min-w-0"
-          placeholder="Type 'help' to see commands..."
-          spellCheck="false"
-        />
-        {input && <span className="text-green-500/50 animate-pulse text-base flex-shrink-0">▌</span>}
-      </div>
-    </footer>
+            <div className="bg-black/30 border-t border-green-500/30 px-6 py-3 flex items-center gap-2 h-12">
+              <span className="text-cyan-400 font-bold text-lg flex-shrink-0">▶</span>
+              <input
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="flex-1 bg-transparent outline-none text-green-400 placeholder:text-green-600/40 font-mono text-base min-w-0"
+                placeholder="Type 'help' to see commands..."
+                spellCheck="false"
+              />
+              {input && <span className="text-green-500/50 animate-pulse text-base flex-shrink-0">▌</span>}
+            </div>
+          </>
+        )}
+      </footer>
+    </>
   );
 });
 
