@@ -25,19 +25,7 @@ const FALLBACK_POSTS = [
     link: '#',
     pubDate: '2024-05-20',
     description: 'A step-by-step guide to designing and coding a modern, cinematic portfolio site.',
-  },
-  {
-    title: 'Lessons from My First Year in Tech',
-    link: '#',
-    pubDate: '2024-04-15',
-    description: 'Reflections and tips for anyone transitioning into software development.',
-  },
-  {
-    title: 'Why Minimalism Works for Developers',
-    link: '#',
-    pubDate: '2024-03-10',
-    description: 'Exploring the benefits of minimal design in developer portfolios and projects.',
-  },
+  }
 ];
 
 const cardVariants = {

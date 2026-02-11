@@ -1,4 +1,4 @@
-# Sdooodly Portfolio
+# Sdooodly
 
 This project uses a Spotify style background image from Unsplash.
 
