@@ -47,24 +47,25 @@ const App = () => {
     { Component: ContactSection, key: 'contact' }
   ], []);
 
-  const sectionIds = ['about', 'skills', 'projects', 'roadmap', 'blog', 'goodreads', 'contact'];
+  const sectionIds = useMemo(() => ['about', 'skills', 'projects', 'roadmap', 'blog', 'goodreads', 'contact'], []);
   const activeSection = useActiveSection(sectionIds);
 
-  const sectionLabels = {
-    'home': 'Home',
-    'about': 'About',
-    'skills': 'Skills',
-    'projects': 'Projects',
-    'roadmap': 'Roadmap',
-    'blog': 'Blog',
-    'goodreads': 'Goodreads',
-    'contact': 'Contact'
-  };
-
-  const breadcrumbItems = [
-    { label: sectionLabels['home'], href: '#home' },
-    ...(activeSection !== 'home' ? [{ label: sectionLabels[activeSection], href: null }] : [])
-  ];
+  const breadcrumbItems = useMemo(() => {
+    const labels = {
+      'home': 'Home',
+      'about': 'About',
+      'skills': 'Skills',
+      'projects': 'Projects',
+      'roadmap': 'Roadmap',
+      'blog': 'Blog',
+      'goodreads': 'Goodreads',
+      'contact': 'Contact'
+    };
+    return [
+      { label: labels['home'], href: '#home' },
+      ...(activeSection !== 'home' ? [{ label: labels[activeSection], href: null }] : [])
+    ];
+  }, [activeSection]);
   return (
     <div className={`min-h-screen text-text font-inter overflow-x-hidden pb-16`}>
       <div

@@ -1,24 +1,38 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export const useActiveSection = (sectionIds = []) => {
   const [activeSection, setActiveSection] = useState('home');
+  const sectionIdsRef = useRef(sectionIds);
+  sectionIdsRef.current = sectionIds;
 
   useEffect(() => {
-    const handleScroll = () => {
-      for (let id of sectionIds) {
-        const element = document.getElementById(id);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2) {
-            setActiveSection(id);
-            break;
-          }
+    const observers = [];
+    const handleIntersect = (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
         }
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const observer = new IntersectionObserver(handleIntersect, {
+      rootMargin: '-40% 0px -60% 0px',
+    });
+
+    for (const id of sectionIdsRef.current) {
+      const el = document.getElementById(id);
+      if (el) {
+        observer.observe(el);
+        observers.push(el);
+      }
+    }
+
+    return () => {
+      for (const el of observers) {
+        observer.unobserve(el);
+      }
+      observer.disconnect();
+    };
   }, [sectionIds]);
 
   return activeSection;

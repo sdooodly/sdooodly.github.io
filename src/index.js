@@ -23,22 +23,34 @@ if (typeof window !== 'undefined') {
     let trailX = mouseX;
     let trailY = mouseY;
 
+    let animating = true;
+
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
       cursor.style.opacity = '0.95';
       trail.style.opacity = '0.5';
+      if (!animating) {
+        animating = true;
+        animate();
+      }
     });
     document.addEventListener('mouseleave', () => {
       cursor.style.opacity = '0';
       trail.style.opacity = '0';
+      animating = false;
     });
     document.addEventListener('mouseenter', () => {
       cursor.style.opacity = '0.95';
       trail.style.opacity = '0.5';
+      if (!animating) {
+        animating = true;
+        animate();
+      }
     });
 
     function animate() {
+      if (!animating) return;
       // Main cursor follows mouse closely
       cursorX += (mouseX - cursorX) * 0.25;
       cursorY += (mouseY - cursorY) * 0.25;

@@ -1,29 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+import { useIsMobile } from '../hooks/useMediaQuery';
 
 const GOODREADS_FEED_URL =
   'https://api.rss2json.com/v1/api.json?rss_url=https://www.goodreads.com/review/list_rss/111266354?shelf=read';
 
 const MAX_BOOKS = 20;
 
-function getWheelConfig() {
-  if (typeof window !== 'undefined' && window.innerWidth < 640) {
-    // Mobile: smaller wheel and covers
-    return { radius: 80, coverW: 56, coverH: 80 };
-  }
-  // Desktop/tablet
-  return { radius: 140, coverW: 96, coverH: 144 };
-}
+const MOBILE_CONFIG = { radius: 80, coverW: 56, coverH: 80 };
+const DESKTOP_CONFIG = { radius: 140, coverW: 96, coverH: 144 };
 
 const CENTER_SCALE = 1.25;
 
+let booksCache = null;
+
 const GoodreadsSection = () => {
-  const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [books, setBooks] = useState(booksCache || []);
+  const [loading, setLoading] = useState(!booksCache);
   const [error, setError] = useState(null);
   const [angle, setAngle] = useState(0);
-  const [wheelConfig, setWheelConfig] = useState(getWheelConfig());
+  const isMobile = useIsMobile();
+  const wheelConfig = isMobile ? MOBILE_CONFIG : DESKTOP_CONFIG;
 
   useEffect(() => {
+    if (booksCache) return;
     fetch(GOODREADS_FEED_URL)
       .then((res) => {
         if (!res.ok) throw new Error('Network response was not ok');
@@ -31,7 +30,8 @@ const GoodreadsSection = () => {
       })
       .then((data) => {
         if (data.status === 'ok' && data.items && data.items.length > 0) {
-          setBooks(data.items.slice(0, MAX_BOOKS));
+          booksCache = data.items.slice(0, MAX_BOOKS);
+          setBooks(booksCache);
         } else {
           setError('No Goodreads books found.');
         }
@@ -41,15 +41,6 @@ const GoodreadsSection = () => {
         setError('Failed to fetch Goodreads books.');
         setLoading(false);
       });
-  }, []);
-
-  // Responsive wheel config
-  useEffect(() => {
-    function handleResize() {
-      setWheelConfig(getWheelConfig());
-    }
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const rotateLeft = () => setAngle((prev) => prev + 360 / books.length);

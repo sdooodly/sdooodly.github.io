@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Radar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -10,6 +10,7 @@ import {
   Legend,
 } from 'chart.js';
 import { skills } from '../data/skills';
+import { useIsMobile } from '../hooks/useMediaQuery';
 
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 
@@ -24,8 +25,9 @@ const categoryColors = {
 
 const SkillsRadarChart = () => {
   const [selected, setSelected] = useState(categories[0]);
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
-  const data = {
+  const isMobile = useIsMobile();
+
+  const data = useMemo(() => ({
     labels: skills[selected].map(s => s.name),
     datasets: [
       {
@@ -39,8 +41,9 @@ const SkillsRadarChart = () => {
         pointRadius: 5,
       },
     ],
-  };
-  const options = {
+  }), [selected]);
+
+  const options = useMemo(() => ({
     responsive: true,
     plugins: {
       legend: { display: false },
@@ -68,7 +71,7 @@ const SkillsRadarChart = () => {
       duration: 1200,
       easing: 'easeInOutQuart',
     },
-  };
+  }), [isMobile]);
   return (
     <div className="w-full max-w-2xl mx-auto flex flex-col items-center" style={{ maxWidth: '90vw', width: '100%' }}>
       <div className="flex gap-4 mb-6">

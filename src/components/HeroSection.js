@@ -1,5 +1,6 @@
 import React, { useState, useMemo, memo } from 'react';
 import { socialLinks } from '../constants/socialLinks';
+import { useIsMobile } from '../hooks/useMediaQuery';
 
 const SVG_LINES = Array.from({ length: 8 }, (_, idx) => ({
   idx,
@@ -63,7 +64,7 @@ CircleSVG.displayName = 'CircleSVG';
 
 const HeroSection = () => {
   const [circleHover, setCircleHover] = useState(false);
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  const isMobile = useIsMobile();
   
   return (
     <section id="about" className="max-w-4xl lg:max-w-6xl mx-auto px-4 py-24 md:py-36 text-center md:text-left relative overflow-visible">

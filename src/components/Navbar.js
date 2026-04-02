@@ -30,6 +30,7 @@ const navLinks = [
   { href: '#roadmap', label: 'Roadmap' },
   { href: '#goodreads', label: 'Goodreads' },
   { href: '#blog', label: 'Blog' },
+  { href: 'https://sdooodly.github.io/sdooworks/', label: 'Art', external: true },
   { href: '#terminal', label: 'Terminal' },
 ];
 
@@ -46,7 +47,12 @@ const Navbar = () => {
         </a>
         <div className="hidden md:flex flex-nowrap space-x-4 lg:space-x-8 items-center overflow-x-auto">
           {navLinks.map(link => (
-            <a key={link.href} href={link.href} className="text-accent2 hover:text-accent px-3 py-2 rounded-md text-base font-medium transition-colors">
+            <a
+              key={link.href}
+              href={link.href}
+              {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              className="text-accent2 hover:text-accent px-3 py-2 rounded-md text-base font-medium transition-colors"
+            >
               {link.label}
             </a>
           ))}
@@ -74,6 +80,7 @@ const Navbar = () => {
                   <a
                     key={link.href}
                     href={link.href}
+                    {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     className="text-white hover:text-accent px-4 py-3 rounded-md text-lg font-medium transition-colors w-full text-center"
                     onClick={() => setMenuOpen(false)}
                   >
@@ -85,10 +92,6 @@ const Navbar = () => {
           </>
         )}
       </div>
-      <style>{`
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
-        .animate-fadeIn { animation: fadeIn 0.2s ease; }
-      `}</style>
     </nav>
   );
 };

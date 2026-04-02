@@ -45,16 +45,30 @@ const cardVariants = {
 // Utility to remove <img> and <figure> tags from HTML string
 function stripImages(html) {
   if (!html) return '';
-  // Remove <img> and <figure> tags (and their content)
   return html.replace(/<figure[\s\S]*?<\/figure>/gi, '').replace(/<img[^>]*>/gi, '');
 }
 
+const H_LINES = Array.from({ length: 8 }, (_, idx) => ({
+  idx,
+  top: `${10 + idx * 12}%`,
+  opacity: 0.13 + 0.09 * Math.abs(Math.sin(idx)),
+}));
+
+const V_LINES = Array.from({ length: 6 }, (_, idx) => ({
+  idx,
+  left: `${10 + idx * 15}%`,
+  opacity: 0.13 + 0.09 * Math.abs(Math.cos(idx)),
+}));
+
+let postsCache = null;
+
 const BlogSection = () => {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState(postsCache || []);
+  const [loading, setLoading] = useState(!postsCache);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (postsCache) return;
     fetch(MEDIUM_FEED_URL)
       .then((res) => {
         if (!res.ok) throw new Error('Network response was not ok');
@@ -62,7 +76,8 @@ const BlogSection = () => {
       })
       .then((data) => {
         if (data.status === 'ok' && data.items && data.items.length > 0) {
-          setPosts(data.items.slice(0, 5));
+          postsCache = data.items.slice(0, 5);
+          setPosts(postsCache);
         } else {
           setError('No Medium posts found. Showing featured posts.');
           setPosts(FALLBACK_POSTS);
@@ -80,14 +95,14 @@ const BlogSection = () => {
     <section id="blog" className="py-20 md:py-32 px-4 md:px-0 max-w-4xl mx-auto relative overflow-visible">
       {/* Glowy horizontal squiggly lines behind content */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-        {[...Array(8)].map((_, idx) => (
+        {H_LINES.map(({ idx, top, opacity }) => (
           <svg
             key={`h-${idx}`}
             className="absolute left-0 w-full h-8"
             style={{
-              top: `${10 + idx * 12}%`,
+              top,
               filter: 'drop-shadow(0 0 12px #fff) drop-shadow(0 0 6px #fff)',
-              opacity: 0.13 + 0.09 * Math.abs(Math.sin(idx)),
+              opacity,
             }}
             viewBox="0 0 1200 32"
             fill="none"
@@ -103,15 +118,14 @@ const BlogSection = () => {
             />
           </svg>
         ))}
-        {/* Glowy vertical squiggly lines behind content */}
-        {[...Array(6)].map((_, idx) => (
+        {V_LINES.map(({ idx, left, opacity }) => (
           <svg
             key={`v-${idx}`}
             className="absolute top-0 h-full w-8"
             style={{
-              left: `${10 + idx * 15}%`,
+              left,
               filter: 'drop-shadow(0 0 12px #fff) drop-shadow(0 0 6px #fff)',
-              opacity: 0.13 + 0.09 * Math.abs(Math.cos(idx)),
+              opacity,
             }}
             viewBox="0 0 32 800"
             fill="none"
