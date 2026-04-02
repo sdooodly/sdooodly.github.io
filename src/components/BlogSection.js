@@ -142,7 +142,7 @@ const BlogSection = () => {
           </svg>
         ))}
       </div>
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-14 md:mb-16 text-center" style={{textShadow: '0 2px 8px rgba(0,224,255,0.12)'}}>Blog</h2>
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-light font-serif mb-14 md:mb-16 text-center" style={{textShadow: '0 2px 8px rgba(0,224,255,0.12)', letterSpacing: '0.04em'}}>Blog</h2>
       {loading && <div className="text-center text-gray-400">Loading latest posts…</div>}
       {error && <div className="text-center text-yellow-400">{error}</div>}
       <div className="space-y-10 md:space-y-12">

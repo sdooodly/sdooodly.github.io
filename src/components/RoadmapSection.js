@@ -108,7 +108,7 @@ const RoadmapSection = () => {
     <section id="roadmap" className="py-16 md:py-24 relative overflow-visible" ref={containerRef}>
       <div className="relative z-10 bg-glass/80 backdrop-blur-glass shadow-lg rounded-3xl p-8 md:p-16 max-w-3xl mx-auto overflow-visible">
         <ParallaxShapes />
-        <h2 className="text-3xl md:text-4xl font-bold mb-14 md:mb-16 text-center text-text/90 font-inter" style={{textShadow: '0 2px 8px rgba(0,224,255,0.12)'}}>Roadmap</h2>
+        <h2 className="text-3xl md:text-4xl font-light font-serif mb-14 md:mb-16 text-center text-text/90" style={{textShadow: '0 2px 8px rgba(0,224,255,0.12)', letterSpacing: '0.04em'}}>Roadmap</h2>
         {/* Mobile: Card-based layout */}
         <div className="relative flex flex-col gap-8 md:hidden">
           {/* Animated vertical line with moving circle on the left */}

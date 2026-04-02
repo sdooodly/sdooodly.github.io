@@ -26,9 +26,7 @@ const LOTR_GREETINGS = [
   'The Eagles are coming! (Your code is shipping)',
 ];
 
-
 const TerminalInterface = memo(() => {
-  const [isExpanded, setIsExpanded] = useState(false);
   const [lines, setLines] = useState([
     { type: 'welcome', text: LOTR_GREETINGS[Math.floor(Math.random() * LOTR_GREETINGS.length)] },
   ]);
@@ -45,18 +43,12 @@ const TerminalInterface = memo(() => {
   }, [lines]);
 
   useEffect(() => {
-    if (isExpanded && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isExpanded]);
+    if (inputRef.current) inputRef.current.focus();
+  }, []);
 
   const executeCommand = (cmd) => {
     const trimmedCmd = cmd.trim().toLowerCase();
-    
-    const newLines = [
-      ...lines,
-      { type: 'input', text: `$ ${cmd}` },
-    ];
+    const newLines = [...lines, { type: 'input', text: `$ ${cmd}` }];
 
     if (trimmedCmd === 'clear') {
       setLines([]);
@@ -64,22 +56,18 @@ const TerminalInterface = memo(() => {
       newLines.push({ type: 'output', text: 'Connect with me on GitHub or LinkedIn.' });
       setLines(newLines);
     } else if (COMMAND_OUTPUTS[trimmedCmd]) {
-      const output = COMMAND_OUTPUTS[trimmedCmd];
-      output.split('\n').forEach(line => {
+      COMMAND_OUTPUTS[trimmedCmd].split('\n').forEach(line => {
         newLines.push({ type: 'output', text: line });
       });
       setLines(newLines);
     } else if (trimmedCmd === '') {
       setLines(newLines.slice(0, -1));
     } else {
-      newLines.push({ 
-        type: 'error', 
-        text: `Command not found: ${cmd}. Type 'help' for available commands.` 
-      });
+      newLines.push({ type: 'error', text: `Command not found: ${cmd}. Type 'help' for available commands.` });
       setLines(newLines);
     }
 
-    setHistory([...history, cmd]);
+    setHistory(prev => [...prev, cmd]);
     setInput('');
     setHistoryIndex(-1);
   };
@@ -111,79 +99,58 @@ const TerminalInterface = memo(() => {
   };
 
   return (
-    <>
-      <footer 
-        id="terminal"
-        className={`fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-br from-black via-gray-950 to-black border-t-2 border-green-500/50 transition-all duration-300 ${
-          isExpanded ? 'h-[500px]' : 'h-12 cursor-pointer hover:border-green-400/70'
-        }`}
-        onClick={() => !isExpanded && setIsExpanded(true)}
-      >
-        <div 
-          className="bg-black/30 px-6 py-2 border-b border-green-500/30 flex items-center justify-between h-12"
-          style={{boxShadow: '0 0 20px rgba(34, 197, 94, 0.15), inset 0 0 20px rgba(34, 197, 94, 0.05)'}}
-        >
-          <div className="flex items-center gap-3">
-            <span className="text-sm text-green-500/70 font-semibold">sdoooterminal</span>
-            <span className="text-xs text-green-600/50">Last updated: Feb 11, 2026</span>
+    <section className="max-w-4xl mx-auto px-4 py-20 md:py-32">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-light font-serif mb-10 text-center text-text/90" style={{ letterSpacing: '0.04em' }}>
+        Terminal
+      </h2>
+      <div className="rounded-2xl overflow-hidden border border-green-500/30 bg-black/80 backdrop-blur-md shadow-2xl">
+        {/* Title bar */}
+        <div className="bg-black/50 px-6 py-3 border-b border-green-500/20 flex items-center gap-3">
+          <div className="flex gap-2">
+            <span className="w-3 h-3 rounded-full bg-red-500/70" />
+            <span className="w-3 h-3 rounded-full bg-yellow-500/70" />
+            <span className="w-3 h-3 rounded-full bg-green-500/70" />
           </div>
-          {isExpanded && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsExpanded(false);
-              }}
-              className="text-green-500/70 hover:text-red-400 transition-colors text-xl font-bold px-2"
-              aria-label="Close terminal"
-            >
-              ×
-            </button>
-          )}
+          <span className="text-sm text-green-500/60 font-mono">sdoooterminal</span>
         </div>
-        
-        {isExpanded && (
-          <>
-            <div 
-              ref={scrollRef}
-              className="overflow-y-auto p-4 space-y-1 font-mono text-sm bg-black/50"
-              style={{
-                textShadow: '0 0 10px rgba(34, 197, 94, 0.3)',
-                height: 'calc(100% - 96px)'
-              }}
-            >
-              {lines.map((line, idx) => (
-                <div 
-                  key={idx}
-                  className={`${
-                    line.type === 'welcome' ? 'text-green-500/80 font-semibold' :
-                    line.type === 'input' ? 'text-cyan-400 font-bold' :
-                    line.type === 'error' ? 'text-red-400' :
-                    line.type === 'blank' ? '' :
-                    'text-green-400'
-                  }`}
-                >
-                  {line.text}
-                </div>
-              ))}
-            </div>
 
-            <div className="bg-black/30 border-t border-green-500/30 px-6 py-3 flex items-center gap-2 h-12">
-              <span className="text-cyan-400 font-bold text-lg flex-shrink-0">▶</span>
-              <input
-                ref={inputRef}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                className="flex-1 bg-transparent outline-none text-green-400 placeholder:text-green-600/40 font-mono text-base min-w-0"
-                placeholder="Type 'help' to see commands..."
-                spellCheck="false"
-              />
-              {input && <span className="text-green-500/50 animate-pulse text-base flex-shrink-0">▌</span>}
+        {/* Output area */}
+        <div
+          ref={scrollRef}
+          className="overflow-y-auto p-6 space-y-1 font-mono text-sm min-h-[400px] max-h-[60vh]"
+          style={{ textShadow: '0 0 10px rgba(34, 197, 94, 0.3)' }}
+        >
+          {lines.map((line, idx) => (
+            <div
+              key={idx}
+              className={
+                line.type === 'welcome' ? 'text-green-500/80 font-semibold' :
+                line.type === 'input' ? 'text-cyan-400 font-bold' :
+                line.type === 'error' ? 'text-red-400' :
+                'text-green-400'
+              }
+            >
+              {line.text}
             </div>
-          </>
-        )}
-      </footer>
-    </>
+          ))}
+        </div>
+
+        {/* Input */}
+        <div className="border-t border-green-500/20 px-6 py-3 flex items-center gap-2 bg-black/30">
+          <span className="text-cyan-400 font-bold text-lg flex-shrink-0">▶</span>
+          <input
+            ref={inputRef}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            className="flex-1 bg-transparent outline-none text-green-400 placeholder:text-green-600/40 font-mono text-base min-w-0"
+            placeholder="Type 'help' to see commands..."
+            spellCheck="false"
+          />
+          {input && <span className="text-green-500/50 animate-pulse text-base flex-shrink-0">▌</span>}
+        </div>
+      </div>
+    </section>
   );
 });
 

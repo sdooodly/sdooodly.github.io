@@ -1,73 +1,67 @@
-import React, { lazy, Suspense, useMemo, useState } from 'react';
+import React, { lazy, Suspense, useState, useCallback } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
-import ScrollProgressBar from './components/ScrollProgressBar';
-import BreadcrumbNavigation from './components/BreadcrumbNavigation';
 import TerminalInterface from './components/TerminalInterface';
-import { motion } from 'framer-motion';
-import { useIsMobile } from './hooks/useMediaQuery';
-import { useActiveSection } from './hooks/useActiveSection';
 
 const ProjectsSection = lazy(() => import('./components/ProjectsSection'));
 const SkillsSection = lazy(() => import('./components/SkillsSection'));
 const ContactSection = lazy(() => import('./components/ContactSection'));
-const Footer = lazy(() => import('./components/Footer'));
-const RoadmapSection = lazy(() => import('./components/RoadmapSection'));
-const BlogSection = lazy(() => import('./components/BlogSection'));
-const GoodreadsSection = lazy(() => import('./components/GoodreadsSection'));
+const ReadsWritesSection = lazy(() => import('./components/ReadsWritesSection'));
 
-const SECTION_BG_CLASSES = [
-  'bg-gradient-to-b from-background/80 to-accent2/10',
-  'bg-gradient-to-b from-accent2/10 to-background/80',
-  'bg-gradient-to-b from-background/80 to-accent3/10',
-  'bg-gradient-to-b from-accent3/10 to-background/80',
-  'bg-gradient-to-b from-background/80 to-accent/10',
+const TABS = [
+  { key: 'about', label: 'About' },
+  { key: 'skills', label: 'Skills' },
+  { key: 'projects', label: 'Projects' },
+  { key: 'reads', label: 'Reads & Writes' },
+  { key: 'contact', label: 'Contact' },
+  { key: 'terminal', label: 'Terminal' },
 ];
 
 const App = () => {
-  const isMobile = useIsMobile();
+  const [activeTab, setActiveTab] = useState('about');
 
-  const sectionVariants = useMemo(() => ({
-    hidden: { opacity: 0, y: 60 },
-    visible: { opacity: 1, y: 0, transition: { duration: isMobile ? 0.7 : 1.4, ease: [0.33, 1, 0.68, 1] } },
-  }), [isMobile]);
+  const handleTabChange = useCallback((key) => {
+    setActiveTab(key);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
-  const bgVariants = useMemo(() => ({
-    hidden: { opacity: 0, scale: 0.98 },
-    visible: { opacity: 1, scale: 1, transition: { duration: isMobile ? 0.6 : 1.2, ease: [0.33, 1, 0.68, 1] } },
-  }), [isMobile]);
+  const renderTab = () => {
+    switch (activeTab) {
+      case 'about':
+        return <HeroSection />;
+      case 'skills':
+        return (
+          <Suspense fallback={<div className="py-16" />}>
+            <SkillsSection />
+          </Suspense>
+        );
+      case 'projects':
+        return (
+          <Suspense fallback={<div className="py-16" />}>
+            <ProjectsSection />
+          </Suspense>
+        );
+      case 'reads':
+        return (
+          <Suspense fallback={<div className="py-16" />}>
+            <ReadsWritesSection />
+          </Suspense>
+        );
+      case 'contact':
+        return (
+          <Suspense fallback={<div className="py-16" />}>
+            <ContactSection />
+          </Suspense>
+        );
+      case 'terminal':
+        return <TerminalInterface />;
+      default:
+        return <HeroSection />;
+    }
+  };
 
-  const sections = useMemo(() => [
-    { Component: HeroSection, key: 'hero' },
-    { Component: SkillsSection, key: 'skills' },
-    { Component: ProjectsSection, key: 'projects' },
-    { Component: RoadmapSection, key: 'roadmap' },
-    { Component: BlogSection, key: 'blog' },
-    { Component: GoodreadsSection, key: 'goodreads' },
-    { Component: ContactSection, key: 'contact' }
-  ], []);
-
-  const sectionIds = useMemo(() => ['about', 'skills', 'projects', 'roadmap', 'blog', 'goodreads', 'contact'], []);
-  const activeSection = useActiveSection(sectionIds);
-
-  const breadcrumbItems = useMemo(() => {
-    const labels = {
-      'home': 'Home',
-      'about': 'About',
-      'skills': 'Skills',
-      'projects': 'Projects',
-      'roadmap': 'Roadmap',
-      'blog': 'Blog',
-      'goodreads': 'Goodreads',
-      'contact': 'Contact'
-    };
-    return [
-      { label: labels['home'], href: '#home' },
-      ...(activeSection !== 'home' ? [{ label: labels[activeSection], href: null }] : [])
-    ];
-  }, [activeSection]);
   return (
-    <div className={`min-h-screen text-text font-inter overflow-x-hidden pb-16`}>
+    <div className="min-h-screen text-text font-inter overflow-x-hidden">
       <div
         className="fixed inset-0 w-full h-full -z-10 pointer-events-none"
         style={{
@@ -75,68 +69,14 @@ const App = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
-          filter: 'none'
         }}
       >
         <div className="absolute inset-0 bg-black/40" />
       </div>
-      <ScrollProgressBar />
-      <Navbar />
-      <BreadcrumbNavigation items={breadcrumbItems} />
-      <div className="space-y-12 md:space-y-16 pt-20">
-        {sections.map(({ Component, key }, idx) => {
-          if (isMobile) {
-            if (idx === 3) {
-              return (
-                <section key={key} className="relative">
-                  <div
-                    className={`absolute inset-0 -z-10 pointer-events-none transition-colors duration-1000 ${SECTION_BG_CLASSES[idx] || ''}`}
-                  />
-                  <Suspense fallback={<div className="py-16" />}>
-                    <Component />
-                  </Suspense>
-                </section>
-              );
-            } else {
-              return (
-                <section key={key} className="relative">
-                  <div
-                    className={`absolute inset-0 -z-10 pointer-events-none ${SECTION_BG_CLASSES[idx] || ''}`}
-                  />
-                  <Suspense fallback={<div className="py-16" />}>
-                    <Component />
-                  </Suspense>
-                </section>
-              );
-            }
-          } else {
-            return (
-              <motion.section
-                key={key}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.4 }}
-                variants={sectionVariants}
-                className="relative"
-              >
-                <motion.div
-                  className={`absolute inset-0 -z-10 pointer-events-none transition-colors duration-1000 ${SECTION_BG_CLASSES[idx] || ''}`}
-                  variants={bgVariants}
-                  initial="hidden"
-                  animate="visible"
-                />
-                <Suspense fallback={<div className="py-16" />}>
-                  <Component />
-                </Suspense>
-              </motion.section>
-            );
-          }
-        })}
-      </div>
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
-      <TerminalInterface />
+      <Navbar tabs={TABS} activeTab={activeTab} onTabChange={handleTabChange} />
+      <main className="pt-16">
+        {renderTab()}
+      </main>
     </div>
   );
 };
