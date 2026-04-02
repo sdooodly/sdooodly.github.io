@@ -8,7 +8,7 @@ const COMMAND_OUTPUTS = {
   'cat contact': 'Email: gayathrigs@outlook.com\nLinkedIn: https://www.linkedin.com/in/gayathri-gireesh-sujatha-3606ba189/\nGitHub: https://github.com/sdooodly\nStatus: Open for new quests in remote lands',
   'whoami': '"I am Sdooodly, broken and incomplete... yet needed." - The wanderer',
   'pwd': '/middle-earth/code/sdoooterminal',
-  'last-updated': 'Last updated: February 11, 2026\nThe tower has spoken. New powers unlocked.',
+  'last-updated': 'v1.0.0 — April 2, 2026\nMajor release: tab-based layout, merged Reads & Writes, simplified Skills, inline Terminal.',
   'easter egg': 'YOU SHALL NOT PASS! (without reading the code first)',
   'fly you fools': 'One does not simply... debug production.',
   'my precious': 'Git commit -m "My Precious"',
