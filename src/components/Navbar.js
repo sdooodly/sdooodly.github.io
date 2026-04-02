@@ -1,89 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const HamburgerIcon = ({ open }) => (
-  <svg className="w-8 h-8 text-accent2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-    {open ? (
-      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-    ) : (
-      <path strokeLinecap="round" strokeLinejoin="round" d="M4 8h16M4 16h16" />
-    )}
-  </svg>
-);
+const links = [
+  { href: '#skills', label: 'Skills' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#blog', label: 'Blog' },
+  { href: '#contact', label: 'Contact' },
+  { href: 'https://sdooodly.github.io/sdooworks/', label: 'Art', external: true },
+];
 
-const EXTERNAL_LINK = { href: 'https://sdooodly.github.io/sdooworks/', label: 'Art' };
-const NAV_BASE = "px-3 py-2 rounded-md text-xs uppercase tracking-[0.12em] font-medium transition-colors cursor-pointer";
-const MOBILE_BASE = "px-4 py-3 rounded-md text-sm uppercase tracking-[0.12em] font-medium transition-colors w-full text-center cursor-pointer";
+const Navbar = () => {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-const Navbar = ({ tabs, activeTab, onTabChange }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <nav className="py-2 px-4 fixed top-0 w-full z-50 border-b border-accent2/30 bg-black/70 backdrop-blur-md">
-      <div className="max-w-6xl mx-auto flex justify-between items-center flex-wrap relative">
-        <button
-          onClick={() => onTabChange('about')}
-          className="font-bold bg-gradient-to-r from-accent to-accent2 text-transparent bg-clip-text rounded-lg p-1 transition-colors drop-shadow-[0_2px_16px_#00E0FF] text-lg md:text-2xl"
-        >
-          Sdooodly
-        </button>
-
-        {/* Desktop */}
-        <div className="hidden md:flex flex-nowrap space-x-2 lg:space-x-4 items-center">
-          {tabs.map(t => (
-            <button
-              key={t.key}
-              onClick={() => onTabChange(t.key)}
-              className={`${NAV_BASE} ${activeTab === t.key ? 'text-gold border-b-2 border-gold' : 'text-accent2/70 hover:text-gold'}`}
-            >
-              {t.label}
-            </button>
-          ))}
-          <a href={EXTERNAL_LINK.href} target="_blank" rel="noopener noreferrer" className={`${NAV_BASE} text-accent2/70 hover:text-gold`}>
-            {EXTERNAL_LINK.label}
-          </a>
-        </div>
-
-        {/* Mobile hamburger */}
-        <div className="flex items-center md:hidden">
-          <button
-            className="flex items-center p-2 focus:outline-none"
-            onClick={() => setMenuOpen(m => !m)}
-            aria-label="Toggle navigation menu"
-          >
-            <HamburgerIcon open={menuOpen} />
+    <nav className={`fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 py-4 transition-all duration-400 ${scrolled ? 'bg-bg/85 backdrop-blur-md' : ''}`}>
+      <a href="#about" className="font-serif text-xl text-text tracking-wide font-light">Sdooodly</a>
+      <ul className="hidden md:flex gap-8 list-none">
+        {links.map(l => (
+          <li key={l.href}>
+            <a href={l.href} {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="text-muted text-xs uppercase tracking-[0.12em] hover:text-accent transition-colors font-normal">{l.label}</a>
+          </li>
+        ))}
+      </ul>
+      <button className="md:hidden flex flex-col gap-1.5 p-1" onClick={() => setOpen(o => !o)} aria-label="Toggle menu">
+        {open
+          ? <svg className="w-6 h-6 text-text" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" /></svg>
+          : <><span className="block w-6 h-px bg-text" /><span className="block w-6 h-px bg-text" /></>
+        }
+      </button>
+      {open && (
+        <div className="fixed inset-0 top-0 bg-bg/95 z-40 flex flex-col items-center justify-center gap-8 md:hidden animate-fadeIn">
+          <button className="absolute top-5 right-6" onClick={() => setOpen(false)} aria-label="Close">
+            <svg className="w-6 h-6 text-text" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
+          {links.map(l => (
+            <a key={l.href} href={l.href} {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="text-text text-sm uppercase tracking-[0.12em] hover:text-accent transition-colors" onClick={() => setOpen(false)}>{l.label}</a>
+          ))}
         </div>
-
-        {/* Mobile menu */}
-        {menuOpen && (
-          <>
-            <div className="fixed inset-0 bg-black/60 z-40 md:hidden" onClick={() => setMenuOpen(false)} />
-            <div className="absolute top-full left-0 w-full shadow-2xl flex flex-col items-center py-4 md:hidden animate-fadeIn z-50" style={{overflow: 'hidden'}}>
-              <div className="absolute inset-0 w-full h-full bg-black/70 backdrop-blur-xl z-0" />
-              <div className="relative z-10 w-full flex flex-col items-center">
-                {tabs.map(t => (
-                  <button
-                    key={t.key}
-                    onClick={() => { onTabChange(t.key); setMenuOpen(false); }}
-                    className={`${MOBILE_BASE} ${activeTab === t.key ? 'text-gold' : 'text-white hover:text-gold'}`}
-                  >
-                    {t.label}
-                  </button>
-                ))}
-                <a
-                  href={EXTERNAL_LINK.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${MOBILE_BASE} text-white hover:text-gold`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Art
-                </a>
-              </div>
-            </div>
-          </>
-        )}
-      </div>
+      )}
     </nav>
   );
 };

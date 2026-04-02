@@ -32,55 +32,27 @@
         theme: {
           extend: {
             colors: {
-              background: 'var(--color-background)',
-              accent: 'var(--color-accent)',
-              accent2: 'var(--color-accent2)',
-              accent3: 'var(--color-accent3)',
-              gold: 'var(--color-gold)',
-              text: 'var(--color-text)',
-              glass: 'var(--color-glass)',
+              bg: '#0a0a0a',
+              accent: '#c9a96e',
+              'accent-hover': '#dfc08a',
+              text: '#e8e4df',
+              muted: '#8a8580',
+              card: '#161616',
             },
             fontFamily: {
               serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-            },
-            boxShadow: {
-              neon: '0 0 16px 2px #FF2D95, 0 0 32px 8px #00E0FF',
-            },
-            backdropBlur: {
-              glass: '8px',
-            },
-            backgroundImage: {
-              'funky-gradient': 'linear-gradient(120deg, #FF2D95 0%, #00E0FF 50%, #B6FF2D 100%)',
+              sans: ['"Inter"', 'system-ui', 'sans-serif'],
             },
           },
         },
       }
     </script>
-    <!-- Google Fonts: Inter + Cormorant Garamond -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-      :root {
-        --color-background: #0A0A0A;
-        --color-accent: #FF2D95;
-        --color-accent2: #00E0FF;
-        --color-accent3: #B6FF2D;
-        --color-gold: #c9a96e;
-        --color-text: #F8F8FF;
-        --color-glass: rgba(30,30,40,0.18);
-      }
-      .light {
-        --color-background: #F8F8FF;
-        --color-accent: #FF2D95;
-        --color-accent2: #00B4D8;
-        --color-accent3: #3A86FF;
-        --color-gold: #b8943e;
-        --color-text: #181818;
-        --color-glass: rgba(255,255,255,0.18);
-      }
-      /* Apply Inter font globally */
-      body, h1, h2, h3, h4, h5, h6 {
-        font-family: 'Inter', sans-serif;
-      }
+      html { scroll-behavior: smooth; }
+      body { font-family: 'Inter', system-ui, sans-serif; background: #0a0a0a; color: #e8e4df; }
+      ::selection { background: #c9a96e; color: #0a0a0a; }
     </style>
   </head>
   <body>
