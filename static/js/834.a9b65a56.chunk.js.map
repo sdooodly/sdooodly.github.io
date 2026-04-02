@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/834.a9b65a56.chunk.js","mappings":"8IAEA,MAIA,EAJeA,IACN,I","sources":["components/Footer.js"],"sourcesContent":["import React from 'react';\n\nconst Footer = () => {\n  return null;\n};\n\nexport default Footer; "],"names":["Footer"],"sourceRoot":""}
