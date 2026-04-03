@@ -8,8 +8,11 @@ const ProjectsSection = () => {
     <section id="projects" className="py-24 md:py-32 px-6 max-w-5xl mx-auto">
       <h2 className="text-3xl md:text-4xl font-serif font-light text-center mb-16 text-text" style={{ letterSpacing: '0.04em' }}>Projects</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {featuredProjects.map(project => (
-          <a key={project.title} href={project.liveLink} target="_blank" rel="noopener noreferrer" className="group relative aspect-[3/4] overflow-hidden bg-card cursor-pointer">
+        {featuredProjects.map(project => {
+          const Wrapper = project.liveLink ? 'a' : 'div';
+          const wrapperProps = project.liveLink ? { href: project.liveLink, target: '_blank', rel: 'noopener noreferrer' } : {};
+          return (
+          <Wrapper key={project.title} {...wrapperProps} className="group relative aspect-[3/4] overflow-hidden bg-card cursor-pointer">
             <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
               <h3 className="font-serif text-lg font-normal text-text mb-1">{project.title}</h3>
@@ -21,12 +24,13 @@ const ProjectsSection = () => {
               </div>
               <div className="flex gap-3">
                 {project.githubLink && <span onClick={e => { e.preventDefault(); e.stopPropagation(); window.open(project.githubLink, '_blank'); }} className="text-xs text-muted hover:text-accent transition-colors cursor-pointer">GitHub ↗</span>}
-                <span className="text-xs text-muted hover:text-accent transition-colors">Live ↗</span>
+                {project.liveLink && <span className="text-xs text-muted hover:text-accent transition-colors">Live ↗</span>}
               </div>
             </div>
             {project.freelance && <span className="absolute top-3 right-3 text-[9px] uppercase tracking-wider px-2 py-0.5 bg-accent/90 text-bg rounded font-medium">Freelance</span>}
-          </a>
-        ))}
+          </Wrapper>
+          );
+        })}
       </div>
 
       {/* See more */}

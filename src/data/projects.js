@@ -8,20 +8,19 @@ export const featuredProjects = [
     image: '/assets/projects/sdooworks.png',
   },
   {
+    title: 'LOTR RAG',
+    description: 'A Retrieval-Augmented Generation chatbot powered by Lord of the Rings lore using Python, LangChain, and vector embeddings.',
+    techStack: ['Python', 'LangChain', 'RAG', 'AI'],
+    githubLink: 'https://github.com/sdooodly/lotr-rag',
+    image: '/assets/projects/lotr-rag.png',
+  },
+  {
     title: 'Vintage Calculator',
     description: 'A functional calculator app with a clean UI and robust logic.',
     techStack: ['HTML', 'CSS', 'JavaScript'],
     githubLink: 'https://github.com/sdooodly/odin-calculator',
     liveLink: 'https://sdooodly.github.io/odin-calculator/',
     image: '/assets/projects/odin-calculator.png',
-  },
-  {
-    title: 'Ichiraku Ramen',
-    description: 'A themed restaurant website inspired by anime, showcasing menu, gallery, and contact features.',
-    techStack: ['HTML', 'CSS', 'JavaScript'],
-    githubLink: 'https://github.com/sdooodly/ichiraku-ramen',
-    liveLink: 'https://sdooodly.github.io/ichiraku-ramen/',
-    image: '/assets/projects/ichiraku-ramen.png',
   },
   {
     title: 'Etch-a-Sketch',
@@ -34,7 +33,7 @@ export const featuredProjects = [
   {
     title: 'Good Bois',
     description: 'A fun, pet-themed web project with responsive design and playful UI.',
-    techStack: ['HTML', 'CSS', 'JavaScript'],
+    techStack: ['HTML', 'CSS', 'JavaScript', 'API'],
     githubLink: 'https://github.com/sdooodly/good-bois',
     liveLink: 'https://sdooodly.github.io/good-bois/',
     image: '/assets/projects/good-bois.png',
@@ -52,7 +51,7 @@ export const otherProjects = [
     title: 'Banking System',
     githubLink: 'https://github.com/sdooodly/banking-system',
     techStack: ['C#', '.NET', 'OOP'],
-    description: 'Console-based banking system to learn OOP',
+    description: 'Console based banking system',
   },
   {
     title: 'CRUD MVC',
@@ -65,29 +64,5 @@ export const otherProjects = [
     githubLink: 'https://github.com/sdooodly/google-scraper-js',
     techStack: ['JavaScript', 'Node.js', 'Web Scraping'],
     description: 'Google search results scraper',
-  },
-  {
-    title: 'Landing Page',
-    githubLink: 'https://github.com/sdooodly/landing-page-grandpa-joe',
-    liveLink: 'https://sdooodly.github.io/landing-page-grandpa-joe/',
-    techStack: ['HTML', 'CSS', 'JavaScript'],
-  },
-  {
-    title: 'Odin Recipes',
-    githubLink: 'https://github.com/sdooodly/odin-recipes',
-    liveLink: 'https://sdooodly.github.io/odin-recipes/',
-    techStack: ['HTML', 'CSS'],
-  },
-  {
-    title: 'Responsive Website',
-    githubLink: 'https://github.com/sdooodly/might-guy-responsive-web-design',
-    liveLink: 'https://sdooodly.github.io/might-guy-responsive-web-design/',
-    techStack: ['HTML', 'CSS'],
-  },
-  {
-    title: 'A-Peeling Potato',
-    githubLink: 'https://github.com/sdooodly/a-peeling-potato',
-    liveLink: 'https://sdooodly.github.io/a-peeling-potato/',
-    techStack: ['HTML', 'CSS'],
   },
 ];
