@@ -10,10 +10,10 @@ const HeroSection = () => (
       </div>
       <h1 className="text-6xl md:text-8xl font-serif font-light mb-4 text-text leading-none">Sdooodly</h1>
       <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-muted mb-10 font-light">
-        Developer · System Designer · Builder
+        Developer · Builder
       </p>
       <p className="max-w-md mx-auto text-muted/80 text-sm leading-relaxed mb-12">
-        From structural blueprints to architecting digital foundations on Linux, I build things that work.
+        From structural blueprints to architecting digital foundations on Linux, I like to build things.
       </p>
       <div className="flex justify-center gap-6 mb-16">
         {socialLinks.map(link => (
@@ -29,5 +29,4 @@ const HeroSection = () => (
     </a>
   </section>
 );
-
 export default HeroSection;
